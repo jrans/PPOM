@@ -4,7 +4,7 @@
   "description": "People's Party of Music",
   "main": "index.js",
   "scripts": {
-    "test": "Lol Tests",
+    "test": "tape test/runner.js",
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "repository": {
@@ -23,7 +23,18 @@
   },
   "dependencies": {
     "react-native": "^0.16.0",
-    "react-native-video": "^0.6.1"
+    "react-native-video": "^0.6.1",
+    "bluebird": "^3.0.6",
+    "good": "^6.4.0",
+    "good-console": "^5.2.0",
+    "hapi": "^11.1.2",
+    "joi": "^7.0.1",
+    "ramda": "^0.18.0",
+    "react-native": "^0.16.0",
+    "request-promise": "^1.0.2"
   },
-  "homepage": "https://github.com/jrans/PPOM#readme"
+  "homepage": "https://github.com/jrans/PPOM#readme",
+  "devDependencies": {
+    "tape": "^4.2.2"
+  }
 }

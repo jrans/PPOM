@@ -1,11 +1,10 @@
 import React, {  StyleSheet, View, Text, Image, PropTypes, Dimensions} from 'react-native';
 
 const iPhone = {
-  scale: 0.77,
-  width: 0.77,
-  model: 5
+  scale: 0.9,
+  width: 0.9,
+  model: 6
 };
-
 
 var Card = React.createClass({
   propTypes: {
@@ -16,6 +15,7 @@ var Card = React.createClass({
   },
 
 	render () {
+    var artistImage = require(this.props.artistImage);
 
     return (
       <View style={styles.container}>
@@ -25,18 +25,15 @@ var Card = React.createClass({
             </View>
           <View style={styles.break}/>
           <View style={styles.titles}>
-            <Text style={ styles.textBig}>ADELE</Text>
-            <Text style={ styles.textSmall }>HELLO</Text>
+            <Text style={ styles.textBig}>{ this.props.artist }</Text>
+            <Text style={ styles.textSmall }>{ this.props.song }</Text>
+          </View>
+          <View style={styles.record}>
+              <Image source={artistImage} style={styles.disc} resizeMode={'contain'}/>
           </View>
           <View style={styles.break}/>
           <View style={styles.summary}>
-            <View style={styles.summaryInline}>
-              <Text style={styles.summaryTitle}>PLAY ME</Text>
-              <Text style={styles.summaryText}>PLAY ME</Text>
-            </View>
-            <Text style={styles.summaryReturn}>
-              'PLAY ME'
-            </Text>
+              <Text style={styles.summaryTitle}>You Tube hits:</Text>
           </View>
         </View>
       </View>
@@ -80,21 +77,6 @@ var styles = StyleSheet.create({
       marginRight: 5,
       alignItems: 'center'
     },
-    textTeam: {
-      fontSize: 14 * iPhone.scale,
-      textAlign: 'center',
-      flexWrap: 'wrap',
-    },
-    textTeamSmall: {
-      fontSize: 14 * iPhone.scale,
-      textAlign: 'center',
-      flexWrap: 'wrap',
-    },
-    textTeamBig: {
-      fontSize: 18 * iPhone.scale,
-      textAlign: 'center',
-      flexWrap: 'wrap',
-    },
     textVS: {
       fontSize: 12 * iPhone.scale,
       textAlign: 'center',
@@ -103,11 +85,6 @@ var styles = StyleSheet.create({
       fontSize: 11,
       textAlign: 'center',
       marginTop: 1,
-    },
-    textLeague: {
-      fontSize: 8,
-      marginTop: 3,
-      textAlign: 'center',
     },
     titles: {
       flex: 3.2,

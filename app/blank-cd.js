@@ -18,9 +18,6 @@ var Card = React.createClass({
 	render () {
     return (
       <View style={styles.container}>
-        <View style={styles.bar}>
-          <Image source={require('../images/disc.png')} style={styles.sportLogo}/>
-        </View>
       </View>
     );
 	}

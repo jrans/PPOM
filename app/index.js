@@ -14,6 +14,7 @@ class App extends Component {
     this.state = {
       page: 'DJ',
       party: '',
+      search: ''
     }
     this.changeState = this.changeState.bind(this);
     this.changePage  = this.changePage.bind(this);

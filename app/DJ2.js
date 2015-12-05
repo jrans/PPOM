@@ -12,15 +12,15 @@ import CD from './cd.js';
 import Blank from './blank-cd.js';
 
 const iPhone = {
-  scale: 0.77,
-  width: 0.77,
-  model: 5
+  scale: 0.9,
+  width: 0.9,
+  model: 6
 };
 
 var screenWidth = Dimensions.get('window').width;
 var screeHeight = Dimensions.get('window').height;
 
-var deckHeight = 345
+var deckHeight = 450;
 var deckWidth = screenWidth - 80 * iPhone.width;
 
 var SWIPE_THRESHOLD = screenWidth/3;
@@ -40,16 +40,71 @@ var Tinderable = React.createClass({
       topcard: styles.normalCardContainer,
       borderWide: 0.5,
       rotateTop3: '',
+      deck: this.props.cards,
+      currentCard: this.props.cards[0],
+      nextCard: this.props.cards[1],
+      cardsToSave: []
     };
   },
 
+  getDefaultProps(){
+    return {
+      cards: [
+        {
+          artist: 'Adele',
+          song: 'Hello',
+          albumImage: '../images/disc.png',
+          artistImage: 'https://www.goodthingsguy.com/wp-content/uploads/2015/10/6981414-adele-pictures.jpg'
+        },
+        {
+          artist: 'Adele1',
+          song: 'Hello',
+          albumImage: '../images/disc.png',
+          artistImage: 'https://www.goodthingsguy.com/wp-content/uploads/2015/10/6981414-adele-pictures.jpg'
+        },
+        {
+          artist: 'Adele2',
+          song: 'Hello',
+          albumImage: '../images/disc.png',
+          artistImage: 'https://www.goodthingsguy.com/wp-content/uploads/2015/10/6981414-adele-pictures.jpg'
+        },
+        {
+          artist: 'Adele3',
+          song: 'Hello',
+          albumImage: '../images/disc.png',
+          artistImage: 'https://www.goodthingsguy.com/wp-content/uploads/2015/10/6981414-adele-pictures.jpg'
+        },
+        {
+          artist: 'Adele4',
+          song: 'Hello',
+          albumImage: '../images/disc.png',
+          artistImage: 'https://www.goodthingsguy.com/wp-content/uploads/2015/10/6981414-adele-pictures.jpg'
+        }
+      ]
+    }
+  },
+
   swipeLeft () {
-    console.log("SWIPED LEFT");
+    this.setState({
+      deck:        this.state.deck.slice(1),
+      nextCard:    this.state.deck[2],
+      currentCard: this.state.nextCard,
+    });
     this.state.pan.setValue({x: 0, y: 0});
     this.state.enter.setValue(0);
+    console.log("SWIPED", this.state);
   },
+
   swipeRight () {
-    console.log("SWIPED RIGHT");
+    this.setState({
+      deck:        this.state.deck.slice(1),
+      nextCard:    this.state.deck[2],
+      currentCard: this.state.nextCard,
+      cardsToSave: this.state.cardsToSave.concat(this.state.currentCard)
+    });
+    this.state.pan.setValue({x: 0, y: 0});
+    this.state.enter.setValue(0);
+    console.log("SWIPED", this.state);
   },
 
   componentWillMount () {
@@ -193,19 +248,22 @@ var Tinderable = React.createClass({
   render () {
     return (
       <View style={styles.superContainer}>
-        <QuickSwipe yes={this.autoSwipe.bind(null, 'right')} no={this.autoSwipe.bind(null, 'left')}/>
         <View onStartShouldSetResponder={this._onStartShouldSetResponder} style={styles.container}>
           <View style={styles.backgroundCard} shouldRasterizeIOS={true}>
             <Blank/>
           </View>
           <Animated.View style={this.getMiddleCardRotation()}>
-            <CD {...this.props.nextCard}/>
+            <CD {...this.state.nextCard}/>
           </Animated.View>
           <Animated.View {...this._panResponder.panHandlers} style={this.state.topcard}>
             <Animated.View style={this.getCardFadeOut()}>
-              <CD {...this.props.currentCard} />
+              <CD {...this.state.currentCard} />
             </Animated.View>
           </Animated.View>
+          <View style={{height: 100}}/>
+          {
+            // <QuickSwipe yes={this.autoSwipe.bind(null, 'right')} no={this.autoSwipe.bind(null, 'left')}/>
+          }
         </View>
       </View>
     );
@@ -214,9 +272,10 @@ var Tinderable = React.createClass({
 var styles = StyleSheet.create({
   superContainer: {
     height: screeHeight - 78 * iPhone.scale - 67,
+    justifyContent: 'center'
   },
   container: {
-    marginTop: 32 * iPhone.scale,
+    marginTop: 200,
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: 'transparent',

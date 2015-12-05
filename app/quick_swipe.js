@@ -1,9 +1,9 @@
 import React, { StyleSheet, View, Image, TouchableOpacity } from 'react-native'
 
 const iPhone = {
-  scale: 0.77,
-  width: 0.77,
-  model: 5
+  scale: 0.9,
+  width: 0.9,
+  model: 6
 };
 
 var QuickBet = React.createClass({
@@ -15,6 +15,7 @@ var QuickBet = React.createClass({
         <TouchableOpacity onPress={this.props.no} activeOpacity={0.5}>
           <Image source={require('../images/grey-cross.png')} style={styles.image}/>
         </TouchableOpacity>
+        <View style={{width: 50}}/>
        <TouchableOpacity onPress={this.props.yes} activeOpacity={0.5}>
           <Image source={require('../images/blue-tick.png')} style={styles.image}/>
         </TouchableOpacity>
