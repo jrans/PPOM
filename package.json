@@ -4,7 +4,8 @@
   "description": "People's Party of Music",
   "main": "index.js",
   "scripts": {
-    "test": "Lol Tests"
+    "test": "Lol Tests",
+    "start": "node_modules/react-native/packager/packager.sh"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,9 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jrans/PPOM/issues"
+  },
+  "dependencies": {
+    "react-native": "^0.16.0"
   },
   "homepage": "https://github.com/jrans/PPOM#readme"
 }
