@@ -5,8 +5,8 @@ function _throw (mess) {
 module.exports = (injectConfig) => {
 
   // config
-  var config       = injectConfig      !== undefined ? injectConfig : _throw('Missing config object');
-  var Mongo        = config.mongo      !== undefined ? config.mongo : {};
+  var config = injectConfig !== undefined ? injectConfig : _throw('Missing config object');
+  var Mongo  = config.mongo !== undefined ? config.mongo : {};
 
   var Hapi   = require('hapi');
   var server = new Hapi.Server({
