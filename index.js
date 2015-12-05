@@ -1,9 +1,5 @@
 'use strict';
 
-require("babel-core/register")({
-  presets: ["es2015"]
-});
-
 var server = require('./api/server.js')({
   env: process.env.NODE_ENV || 'test',
   humId: process.env.HUM_ID,
