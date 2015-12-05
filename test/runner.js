@@ -3,6 +3,7 @@
 
 require('./api/server.test.js');
 require('./api/handlers/search.test.js');
+require('./api/handlers/stream.test.js');
 require('./api/services/hum.test.js');
 require('./api/services/utils.test.js');
 
