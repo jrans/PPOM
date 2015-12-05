@@ -4,7 +4,7 @@ import React, { Component, PropTypes, View } from 'react-native';
 import Home from './Home.js';
 import Search from './Search.js';
 import Party from './Party.js';
-import DJ from './DJ.js';
+import DJ from './DJ2.js';
 
 class App extends Component {
 
@@ -12,7 +12,7 @@ class App extends Component {
     super();
 
     this.state = {
-      page: 'Home',
+      page: 'DJ',
       party: '',
     }
     this.changeState = this.changeState.bind(this);
@@ -23,8 +23,8 @@ class App extends Component {
     this.setState(change)
   }
 
-  changePage ([age]) {
-    this.setState({page})
+  changePage (page) {
+    this.setState({ page : page } )
   }
 
   render () {

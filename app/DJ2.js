@@ -7,9 +7,21 @@
 
 import React, { StyleSheet, Animated, View, PanResponder, PropTypes, Dimensions, Image } from 'react-native';
 
+import QuickSwipe from './quick_swipe.js';
+import CD from './cd.js';
+import Blank from './blank-cd.js';
+
+const iPhone = {
+  scale: 0.77,
+  width: 0.77,
+  model: 5
+};
 
 var screenWidth = Dimensions.get('window').width;
 var screeHeight = Dimensions.get('window').height;
+
+var deckHeight = 345
+var deckWidth = screenWidth - 80 * iPhone.width;
 
 var SWIPE_THRESHOLD = screenWidth/3;
 
@@ -19,11 +31,6 @@ var Tinderable = React.createClass({
     currentCard: PropTypes.object,
     nextCard: PropTypes.object,
   },
-
-  getDefaultProps: {
-    currentCard: ]
-    nextCard:
-  }
 
   getInitialState () {
     return {
@@ -35,15 +42,14 @@ var Tinderable = React.createClass({
       rotateTop3: '',
     };
   },
+
   swipeLeft () {
-    // this.props.actions.swipeLeft();
-    console.log("SWIPED LEFT")
+    console.log("SWIPED LEFT");
     this.state.pan.setValue({x: 0, y: 0});
     this.state.enter.setValue(0);
   },
   swipeRight () {
-    console.log("SWIPED RIGHT")
-    // this.props.actions.swipeRight();
+    console.log("SWIPED RIGHT");
   },
 
   componentWillMount () {
@@ -87,6 +93,7 @@ var Tinderable = React.createClass({
     });
     return true;
   },
+
   autoSwipe (direction) {
     if (direction === 'left') {
       Animated.timing(this.state.pan.x, {
@@ -186,16 +193,17 @@ var Tinderable = React.createClass({
   render () {
     return (
       <View style={styles.superContainer}>
+        <QuickSwipe yes={this.autoSwipe.bind(null, 'right')} no={this.autoSwipe.bind(null, 'left')}/>
         <View onStartShouldSetResponder={this._onStartShouldSetResponder} style={styles.container}>
           <View style={styles.backgroundCard} shouldRasterizeIOS={true}>
             <Blank/>
           </View>
           <Animated.View style={this.getMiddleCardRotation()}>
-            <Card {...this.props.nextCard}/>
+            <CD {...this.props.nextCard}/>
           </Animated.View>
           <Animated.View {...this._panResponder.panHandlers} style={this.state.topcard}>
             <Animated.View style={this.getCardFadeOut()}>
-              <Card {...this.props.currentCard} />
+              <CD {...this.props.currentCard} />
             </Animated.View>
           </Animated.View>
         </View>

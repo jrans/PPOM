@@ -1,11 +1,20 @@
 // npm
-import React, { Component, PropTypes, View, StyleSheet } from 'react-native';
+import React, { Component, PropTypes, View, StyleSheet, WebView } from 'react-native';
 // Pages
 
 class Home extends Component {
 
   render () {
-    return <View style = {styles.container} />
+    return (
+      <View style = {styles.container}>
+        <WebView
+          automaticallyAdjustContentInsets={false}
+          url={'https://www.youtube.com/watch?v=xsxVDtpO9tM'}
+          allowsInlineMediaPlayback={true}
+          startInLoadingState={true}
+        />
+      </View>
+    )
   }
 }
 
