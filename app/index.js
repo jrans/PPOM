@@ -1,14 +1,16 @@
 // npm
-import React, { Component, PropTypes } from 'react-native';
+import React, { Component, PropTypes, View } from 'react-native';
 // Pages
 import Home from './Home.js';
 import Search from './Search.js';
 import Party from './Party.js';
 import DJ from './DJ.js';
 
-class Entry extends Component {
+class App extends Component {
 
   constructor () {
+    super();
+
     this.state = {
       page: 'Home',
       party: '',
@@ -29,10 +31,10 @@ class Entry extends Component {
     const {
       changeState,
       changePage,
-      state
+      state,
     } = this;
 
-    switch (page) {
+    switch (state.page) {
       case 'Home':
         return <Home changePage={changePage} changeState={changeState} state={state} />
       case 'Search':
@@ -42,11 +44,12 @@ class Entry extends Component {
       case 'DJ':
         return <DJ changePage={changePage} changeState={changeState} state={state} />
     }
+    return <View/>
   }
 }
 
-Entry.propTypes = {
+App.propTypes = {
 
 };
 
-export default Entry;
+export default App;
