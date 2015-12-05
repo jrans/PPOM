@@ -31,7 +31,8 @@
     "joi": "^7.0.1",
     "ramda": "^0.18.0",
     "react-native": "^0.16.0",
-    "request-promise": "^1.0.2"
+    "request-promise": "^1.0.2",
+    "youtube-audio-stream": "0.0.15"
   },
   "homepage": "https://github.com/jrans/PPOM#readme",
   "devDependencies": {
