@@ -1,0 +1,24 @@
+{
+  "name": "ppom",
+  "version": "1.0.0",
+  "description": "People's Party of Music",
+  "main": "index.js",
+  "scripts": {
+    "test": "Lol Tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrans/PPOM.git"
+  },
+  "keywords": [
+    "PPOM",
+    "MUSIC",
+    "HUMM"
+  ],
+  "author": "ppom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jrans/PPOM/issues"
+  },
+  "homepage": "https://github.com/jrans/PPOM#readme"
+}
