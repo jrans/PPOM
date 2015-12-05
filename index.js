@@ -4,6 +4,7 @@ var server = require('./api/server.js')({
   env: process.env.NODE_ENV || 'test',
   humId: process.env.HUM_ID,
   humSecret: process.env.HUM_SECRET,
+  humToken: process.env.TOKEN,
   logger: true,
 });
 

@@ -1,3 +1,4 @@
+
 function _throw (mess) {
   throw 'Error while initialization: ' + mess;
 }
@@ -5,8 +6,12 @@ function _throw (mess) {
 module.exports = (injectConfig) => {
 
   // config
-  var config = injectConfig !== undefined ? injectConfig : _throw('Missing config object');
-  var Mongo  = config.mongo !== undefined ? config.mongo : {};
+  var config     = injectConfig     !== undefined ? injectConfig     : _throw('Missing config object');
+  var humId      = config.humId     !== undefined ? config.humId     : _throw('Missing humId');
+  var humSecret  = config.humSecret !== undefined ? config.humSecret : _throw('Missing humSecret');
+  var humToken   = config.humToken  !== undefined ? config.humToken  : _throw('Missing humToken');
+  var Mongo      = config.mongo     !== undefined ? config.mongo     : {};
+  var Hum        = config.hum       !== undefined ? config.hum       : require('./services/hum')({id:humId,secret:humSecret,token:humToken});
 
   var Hapi   = require('hapi');
   var server = new Hapi.Server({
@@ -62,7 +67,8 @@ module.exports = (injectConfig) => {
       }
 
       server.route(require('./routes.js')({
-        Mongo: Mongo
+        Mongo,
+        Hum,
       }));
     }
   );
