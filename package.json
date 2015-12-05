@@ -4,7 +4,7 @@
   "description": "People's Party of Music",
   "main": "index.js",
   "scripts": {
-    "test": "Lol Tests",
+    "test": "tape test/runner.js",
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "repository": {
@@ -27,5 +27,8 @@
     "hapi": "^11.1.2",
     "react-native": "^0.16.0"
   },
-  "homepage": "https://github.com/jrans/PPOM#readme"
+  "homepage": "https://github.com/jrans/PPOM#readme",
+  "devDependencies": {
+    "tape": "^4.2.2"
+  }
 }
