@@ -17,6 +17,8 @@ const styles = StyleSheet.create({
 })
 
 Home.propTypes = {
+  changePage:  PropTypes.func,
+  changeState: PropTypes.func
 };
 
 export default Home;

@@ -12,8 +12,9 @@ class App extends Component {
     super();
 
     this.state = {
-      page: 'Home',
+      page: 'Search',
       party: '',
+      search: ''
     }
     this.changeState = this.changeState.bind(this);
     this.changePage  = this.changePage.bind(this);
