@@ -5,7 +5,7 @@ module.exports = (o) => {
 
   const search    = require('./handlers/search.js')(o.Hum);
   const streamMp3 = require('./handlers/stream.js')(o.Hum);
-  const getParty  = require('./handlers/party.js')(o.Mongo);
+  const getParty  = require('./handlers/party.js')(o.Knex);
 
   return [
     {

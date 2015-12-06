@@ -1,5 +1,5 @@
 
-const utils   = require('../services/utils.js');
+const utils = require('../services/utils.js');
 
 module.exports = (Hum) => {
 

@@ -8,6 +8,7 @@ const serverFunction = require(path+'/api/server.js');
 test('api:handler:stream -> missing query', t => {
 
   const server = serverFunction({
+    env: 'test',
     humId: process.env.HUM_ID,
     humSecret: process.env.HUM_SECRET,
     humToken: process.env.TOKEN,
