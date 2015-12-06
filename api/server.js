@@ -10,7 +10,7 @@ module.exports = (injectConfig) => {
   var humId      = config.humId     !== undefined ? config.humId     : _throw('Missing humId');
   var humSecret  = config.humSecret !== undefined ? config.humSecret : _throw('Missing humSecret');
   var humToken   = config.humToken  !== undefined ? config.humToken  : _throw('Missing humToken');
-  var Mongo      = config.mongo     !== undefined ? config.mongo     : {};
+  var Knex       = config.knex      !== undefined ? config.knex      : require('./models/queries')(config.env);
   var Hum        = config.hum       !== undefined ? config.hum       : require('./services/hum')({id:humId,secret:humSecret,token:humToken});
 
   var Hapi   = require('hapi');
@@ -67,7 +67,7 @@ module.exports = (injectConfig) => {
       }
 
       server.route(require('./routes.js')({
-        Mongo,
+        Knex,
         Hum,
       }));
     }
