@@ -24,7 +24,7 @@ class TrackResults extends Component {
   }
 
   play () {
-    this.setState({paused:!this.state.paused});
+    this.setState({paused: !this.state.paused });
     this.props.changeTrack();
   }
 
@@ -60,15 +60,18 @@ class TrackResults extends Component {
           onEnd       = {stop}
           ref         = {component=>this._player=component}
         />
-        <TouchableOpacity style={styles.play} onPress={play} />
-        <Image source = {{uri:picture}} style = {styles.icon} />
+        <TouchableOpacity style={styles.add} onPress={play} >
+          <Image source={ paused ? require('../images/play.png') : require('../images/pause.png') } resizeMode='contain' style={styles.add} />
+        </TouchableOpacity>
         <Text style = {styles.artist} >
           {artist}
         </Text>
         <Text style = {styles.title} >
           {title}
         </Text>
-        <TouchableOpacity style={styles.add} onPress={addTrack} />
+        <TouchableOpacity style={styles.add} onPress={addTrack} >
+          <Image source={require('../images/plus.png')} resizeMode='contain' style={styles.add} />
+        </TouchableOpacity>
       </View>
     );
   }
@@ -77,34 +80,31 @@ class TrackResults extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height:30,
-    backgroundColor: 'grey',
+    height: 50,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    borderWidth: 1,
   },
     artist: {
-      fontSize: 20,
-      color: 'blue'
+      fontSize: 15,
+      color: 'black',
+      fontFamily: 'Montserrat-Regular'
     },
     title: {
-      fontSize: 20,
-      color: 'blue'
+      fontSize: 15,
+      color: 'black',
+      fontFamily: 'Montserrat-Light'
     },
     icon: {
       height: 20,
       width:  20,
     },
-    play: {
-      height: 20,
-      width: 20,
-      backgroundColor: 'black'
-    },
     add : {
-      height: 20,
-      width: 20,
-      backgroundColor: 'green'
-    }
+      height: 30,
+      width: 30,
+    },
+
 })
 
 export default TrackResults;

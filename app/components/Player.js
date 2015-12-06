@@ -79,13 +79,13 @@ const styles = StyleSheet.create({
   },
     progressBar: {
       flexDirection: "row",
-      paddingVertical: 5,
-      height: 15,
+      paddingVertical: 2.5,
+      height: 10,
       alignItems: 'stretch',
-      backgroundColor: 'green'
+      backgroundColor: 'black'
     },
       progress: {
-        backgroundColor: 'red'
+        backgroundColor: '#b31217'
       },
     playing: {
       paddingHorizontal: 20,
@@ -98,19 +98,19 @@ const styles = StyleSheet.create({
       flex:1,
       justifyContent: 'space-around'
     },
-      artist: {
-        fontSize: 22,
-        color: 'blue',
-        fontFamily: 'Monserrat'
-      },
       title: {
+        fontSize: 22,
+        fontFamily: 'Montserrat-Regular'
+      },
+      artist: {
         fontSize: 15,
-        color: 'blue',
-        fontFamily: 'Monserrat'
+        color: '#b31217',
+        fontFamily: 'Montserrat-Regular'
       },
     icon: {
       height: 60,
       width:  60,
+      marginRight: 10
     },
 })
 

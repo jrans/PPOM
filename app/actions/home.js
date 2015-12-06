@@ -10,7 +10,6 @@ function returnPlaylist (playlist) {
   return { type: types.RETURN_PLAYLIST, playlist }
 };
 
-
 function sliceTopCard () {
   return { type: types.NEXT_CARD };
 };

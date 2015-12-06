@@ -1,5 +1,5 @@
 // npm
-import React, { Component, PropTypes, View, StyleSheet, TextInput, ScrollView, Text, TouchableOpacity } from 'react-native';
+import React, { Component, PropTypes, View, StyleSheet, TextInput, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
 // Components
 import TrackResult from './TrackResult.js';
 
@@ -107,14 +107,19 @@ class Search extends Component {
         <View style= {styles.searchBar}>
           <TextInput
             style         = { styles.searchInput }
-            placeholder   = "search by track, artist, keyword"
+            placeholder   = "Search by track, artist, keyword ... "
+            placeholderTextColor = 'black'
             onChangeText  = { search }
             value         = { searchValue }
           />
           <TouchableOpacity
             style = {styles.searchBar}
             onPress = {searchTracks}
-          />
+          >
+            <View style={styles.iconContainer}>
+              <Image source={require('../images/search.png')} style={styles.searchIcon} resizeMode={'contain'}/>
+            </View>
+          </TouchableOpacity>
         </View>
         <ScrollView
           ref                              = {component=>this._funkyScrollView=component}
@@ -149,28 +154,49 @@ Search.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'red',
+    backgroundColor: 'white',
     flexDirection:   'column',
     justifyContent:  'space-between',
+    marginTop: 30,
   },
     video: {
       height:0,
       width: 0
     },
     searchBar: {
-      height: 30,
-      backgroundColor: 'blue',
+      height: 70,
+      backgroundColor: 'black',
       flexDirection: 'row',
-      paddingHorizontal: 20
+      paddingHorizontal: 20,
+      alignItems: 'center'
     },
       searchInput: {
+        color: 'black',
         flex: 1,
-        backgroundColor: 'yellow',
-        paddingHorizontal: 10
+        fontSize: 13,
+        fontFamily: 'Montserrat-Regular',
+        borderRadius: 15,
+        backgroundColor: '#ffffff',
+        borderColor: '#ffffff',
+        paddingLeft: 15,
+        height: 40,
+        alignSelf: 'center'
       },
+      iconContainer: {
+        backgroundColor: 'white',
+        width: 36,
+        height: 36,
+        borderRadius: 19,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+        searchIcon: {
+          width: 15,
+          height: 15,
+        },
     trackScroll: {
       height: 100,
-      backgroundColor: 'orange'
+      backgroundColor: 'white'
     },
       scrollContent: {
         flexDirection: 'column',

@@ -19,35 +19,35 @@ class Home extends Component {
 
   render () {
     return (
-      <View style={styles.container} >
-        {
-          // <Video source={{uri: "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"}}
-          //  style={styles.backgroundVideo}
-          //  resizeMode="cover"
-          //  repeat={true}
-          //  volume={1.0}
-          //  key="video2"
-          //  />
-        }
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>PP</Text><Image source={require('../images/disc.png')} style={styles.disc} resizeMode={'contain'}/><Text style={styles.title}>M</Text>
-        </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
-            placeholder='WHAT PARTY ARE YOU AT?'
-            placeholderTextColor='white'
-          />
-          <TouchableOpacity style={styles.button} onPress={() => this.props.changePage('Party')}>
-            <Text style={styles.text}>GO TO THE PARTY</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.bottomContainer}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.text}>START A PARTY</Text>
-          </TouchableOpacity>
+      <View style={{flex: 1}}>
+        <Video source={{uri: "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"}}
+         style={styles.backgroundVideo}
+         resizeMode="cover"
+         repeat={true}
+         volume={1.0}
+         key="video2"
+        />
+        <View style={styles.container} >
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>PP</Text><Image source={require('../images/disc.png')} style={styles.disc} resizeMode={'contain'}/><Text style={styles.title}>M</Text>
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.setState({text})}
+              value={this.state.text}
+              placeholder='WHAT PARTY ARE YOU AT?'
+              placeholderTextColor='white'
+            />
+            <TouchableOpacity style={styles.button} onPress={() => this.props.changePage('Party')}>
+              <Text style={styles.text}>GO TO THE PARTY</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.bottomContainer}>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.text}>START A PARTY</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     )
@@ -64,18 +64,20 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'black'
+    backgroundColor: 'rgba(255, 255, 255, 0.3)'
   },
   input: {
-    height: 50,
-    width: 300,
-    borderColor: 'gray',
-    borderWidth: 2,
+    height: 80,
+    width: 350,
+    borderColor: 'white',
+    borderWidth: 5,
     alignSelf: 'center',
     borderRadius: 10,
-    paddingLeft: 30,
+    paddingLeft: 15,
     color: 'white',
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: 22,
+    fontFamily: 'Montserrat-Bold',
   },
   titleContainer: {
     height: 100,
@@ -85,6 +87,7 @@ const styles = StyleSheet.create({
   },
     title: {
       fontSize: 80,
+      fontFamily: 'Montserrat-Bold',
       color: 'white'
     },
   button: {
@@ -116,11 +119,12 @@ const styles = StyleSheet.create({
     right: 0,
   },
   text: {
-    color: 'white'
+    color: 'white',
+    fontFamily: 'Montserrat-Bold',
   },
   disc: {
-    height: 80,
-    width:  80,
+    height: 70,
+    width:  70,
     paddingHorizontal: 5
   },
 

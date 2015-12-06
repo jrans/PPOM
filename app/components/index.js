@@ -1,10 +1,10 @@
 // npm
 import React, { Component, PropTypes, View, Image, TouchableOpacity, Animated, Easing, Text, StyleSheet, Dimensions } from 'react-native';
 // Pages
-import Home from './Home.js';
+import Home   from './Home.js';
 import Search from './Search.js';
-import Party from './Party.js';
-import DJ from '../containers/Home.js';
+import Party  from './Party.js';
+import DJ     from '../containers/Home.js';
 
 var {
   width: screenWidth,
@@ -61,7 +61,6 @@ class App extends Component {
       case 'Party':
       return (
             <View style = { styles.container } >
-
               <DJ/>
                 <Animated.View style = { [{ height: this.state.topTabHeight, top: 0 }, styles.tabContainer ] }>
                   <Party tabPress={this.toggleHeight.bind(this,'topTab', this.state.topTabHeight)}/>
@@ -77,7 +76,7 @@ class App extends Component {
                 >
                   <Image
                     resizeMode = 'contain'
-                    style      = { [styles.arrow, this.state.bottomTab && { top: 10, left: screenWidth - 35, position: 'absolute' }] }
+                    style      = { [styles.arrow, this.state.bottomTab && { top: 10, left: screenWidth - 40, position: 'absolute' }] }
                     source     = { this.state.bottomTab ? require('../images/arrow-down.png') : require('../images/up-arrow.png') }
                   />
                 </TouchableOpacity>
@@ -104,14 +103,14 @@ const styles = StyleSheet.create({
   },
   tab: {
     right: 10,
-    width: screenWidth,
+    width: 40,
     justifyContent: 'center',
     alignItems: 'center'
   },
   arrow: {
     left: screenWidth/2 - 20,
-    height: 30,
-    width: 30
+    height: 40,
+    width: 40
   },
 })
 
