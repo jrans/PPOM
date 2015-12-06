@@ -51,10 +51,10 @@ class Search extends Component {
     const req = {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({ playlist, song })
+      body: JSON.stringify(song)
     };
 
-    return fetch('http:localhost:9000/suggest', req)
+    return fetch('http:localhost:9000/song', req)
       .then(response => response.json())
       .then(json => {
         if (json.status === 'success') {
@@ -66,21 +66,29 @@ class Search extends Component {
       });
   }
 
-  searchTracks (searchValue) {
+  searchTracks () {
 
     const req = {
-      method: 'POST',
+      method: 'GET',
       headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({ searchValue: this.state.searchValue })
     };
 
-    return fetch('http:localhost:9000/search', req)
+    return fetch('http:localhost:9009/search?name='+this.state.searchValue, req)
       .then(response => response.json())
       .then(json => {
-        if (json.status === 'success') {
-        } else {
-          console.log('Login error:',json);
-        }
+        this.setState({searchResults: json.songs.reduce((results, artist) => {
+          artist.songs.reduce((results, song) => {
+            return results.concat[{
+              party_name:   'test',
+              url:          song.url,
+              album_image:  song.album_image,
+              artist_image: artist.artist_image,
+              title:        song.title,
+              artist:       artist.name
+            }]
+          }, results)
+        }, [])
+        });
       })
       .catch(error => {
       });
@@ -94,10 +102,20 @@ class Search extends Component {
     } = this;
 
     return searchResults.map( (result,i) => <TrackResult
-      {...result}
+      picture      = {result.album_image}
+      name         = {result.artist}
+      title        = {result.title}
+      url          = {result.url}
       trackPlaying = {trackPlaying}
       changeTrack  = {changeTrack.bind(this,result.url)}
-      addTrack     = {addTrack.bind(this,result.uri)}
+      addTrack     = {addTrack.bind(this,{
+        party_name: result.party_name
+        url: result.url
+        album_image: result.album_image
+        artist_image: result.artist_image
+        title: result.title
+        artist: result.artist
+      })}
       key          = {i}
     />)
   }
