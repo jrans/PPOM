@@ -1,5 +1,5 @@
 // npm
-import React, { Component, PropTypes, View, StyleSheet,ScrollView, Text } from 'react-native';
+import React, { Component, PropTypes, View, StyleSheet,ScrollView, Text, TouchableOpacity } from 'react-native';
 // Components
 import QueuedTrack from './QueuedTrack.js';
 
@@ -59,7 +59,8 @@ class Party extends Component {
     const {
       state: {queue},
       createResults,
-      finishTrack
+      finishTrack,
+      props: {tabPress}
     } = this;
 
     return (
@@ -69,6 +70,7 @@ class Party extends Component {
             next = {finishTrack}
             {...queue[0]}
           />
+        <TouchableOpacity onPress={tabPress} style={{backgroundColor: 'white', height:20, borderWidth:2}}/>
         </View>
         <ScrollView
           ref                              = {component=>this._funkyScrollView=component}
@@ -103,7 +105,6 @@ Party.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 30,
     backgroundColor: 'red',
     flexDirection:   'column',
     justifyContent:  'space-between',
@@ -113,10 +114,10 @@ const styles = StyleSheet.create({
       width: 0
     },
     playing: {
-      height: 30,
+      height: 100,
       backgroundColor: 'blue',
-      flexDirection: 'row',
-      paddingHorizontal: 20
+      flexDirection: 'column',
+      alignItems: 'stretch'
     },
       searchInput: {
         flex: 1,

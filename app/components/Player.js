@@ -9,9 +9,9 @@ class Player extends Component {
   constructor () {
     super();
     this.state = {
-      paused:true
+      trackDuration: 0,
+      currentTime: 0
     }
-    this.play=this.play.bind(this);
   }
   //
   // componentWillReceiveProps(props) {
@@ -22,11 +22,6 @@ class Player extends Component {
   //   }
   // }
 
-  play () {
-    this.setState({paused:!this.state.paused});
-  }
-
-
   render () {
     const {
       props: {
@@ -36,8 +31,7 @@ class Player extends Component {
         uri,
         next
       },
-      play,
-      state: {paused}
+      state: {paused, trackDuration, currentTime}
     } = this;
 
     return (
@@ -48,24 +42,28 @@ class Player extends Component {
             style       = {styles.video}
             repeat      = {true}
             volume      = {1.0}
-            paused      = { paused }
-
-            onLoadStart={()=>console.log('onLoadStart', arguments)}
-            onLoad={()=>console.log('onLoad', arguments)}
-            onProgress={()=>console.log('onProgress', arguments)}
+            onLoad      = {(obj)=>this.setState({trackDuration:obj.duration})}
+            onProgress  = {(obj)=>this.setState({currentTime:obj.currentTime})}
             onEnd       = {next}
             ref         = {component=>this._player=component}
           />
         }
-        <TouchableOpacity style={styles.play} onPress={play} />
-        <Image source = {{uri:picture}} style = {styles.icon} />
-        <Text style = {styles.artist} >
-          {artist}
-        </Text>
-        <Text style = {styles.title} >
-          {title}
-        </Text>
-        <TouchableOpacity style={styles.add} onPress={next} />
+
+        <View style={styles.playing}>
+          <Image source = {{uri:picture}} style = {styles.icon} />
+          <View style={styles.info} >
+            <Text style = {styles.title} >
+              {title}
+            </Text>
+            <Text style = {styles.artist} >
+                {artist}
+            </Text>
+          </View>
+        </View>
+        <View style={styles.progressBar}>
+          <View style={[styles.progress, {flex: currentTime}]}/>
+          <View style={[styles.toGo, {flex: trackDuration-currentTime}]}/>
+        </View>
       </View>
     );
   }
@@ -74,34 +72,46 @@ class Player extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height:30,
-    backgroundColor: 'grey',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    height:75,
+    backgroundColor: 'white',
+    flexDirection: 'column',
+    alignItems: 'stretch'
   },
-    artist: {
-      fontSize: 20,
-      color: 'blue'
-    },
-    title: {
-      fontSize: 20,
-      color: 'blue'
-    },
-    icon: {
-      height: 20,
-      width:  20,
-    },
-    play: {
-      height: 20,
-      width: 20,
-      backgroundColor: 'black'
-    },
-    add : {
-      height: 20,
-      width: 20,
+    progressBar: {
+      flexDirection: "row",
+      paddingVertical: 5,
+      height: 15,
+      alignItems: 'stretch',
       backgroundColor: 'green'
-    }
+    },
+      progress: {
+        backgroundColor: 'red'
+      },
+    playing: {
+      paddingHorizontal: 20,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-around'
+    },
+    info: {
+      flexDirection: 'column',
+      flex:1,
+      justifyContent: 'space-around'
+    },
+      artist: {
+        fontSize: 22,
+        color: 'blue',
+        fontFamily: 'Monserrat'
+      },
+      title: {
+        fontSize: 15,
+        color: 'blue',
+        fontFamily: 'Monserrat'
+      },
+    icon: {
+      height: 60,
+      width:  60,
+    },
 })
 
 export default Player;

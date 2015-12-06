@@ -61,20 +61,11 @@ class App extends Component {
       case 'Party':
       return (
             <View style = { styles.container } >
-              <DJ />
-              <Animated.View style = { [{ height: this.state.topTabHeight, top: 0 }, styles.tabContainer ] }>
-                <Party/>
-                <TouchableOpacity
-                  onPress = { () => this.toggleHeight('topTab', this.state.topTabHeight) }
-                  style   = { [styles.tab, { height: this.state.topTab ? screenHeight-tabHeight : tabHeight }] }
-                >
-                  <Image
-                    resizeMode = 'contain'
-                    style      = { [styles.arrow, this.state.topTab && { bottom : 10, left: screenWidth - 35, position: 'absolute' }] }
-                    source     = { this.state.topTab ? require('../images/up-arrow.png') : require('../images/arrow-down.png') }
-                  />
-                </TouchableOpacity>
-              </Animated.View>
+
+              <DJ/>
+                <Animated.View style = { [{ height: this.state.topTabHeight, top: 0 }, styles.tabContainer ] }>
+                  <Party tabPress={this.toggleHeight.bind(this,'topTab', this.state.topTabHeight)}/>
+                </Animated.View>
 
               <Animated.View
                 style = { [{ height: this.state.bottomTabHeight, bottom: 0 }, styles.tabContainer] }
@@ -107,9 +98,9 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   tabContainer: {
+    width: screenWidth,
     backgroundColor: 'white',
     position: 'absolute',
-    flexDirection: 'row',
   },
   tab: {
     right: 10,
