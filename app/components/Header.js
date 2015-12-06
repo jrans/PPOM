@@ -35,13 +35,13 @@ const styles = StyleSheet.create({
       alignItems: 'center'
     },
       title: {
-        fontSize: 80,
+        fontSize: 50,
         fontFamily: 'Montserrat-Bold',
-        color: 'white'
+        color: 'red'
       },
       disc: {
-        height: 70,
-        width:  70,
+        height: 50,
+        width:  50,
         paddingHorizontal: 5
       },
 })
