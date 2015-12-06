@@ -87,29 +87,31 @@ export function getDeck (partyName) {
   }
 };
 
-export function saveSong (song_id) {
+export function saveSong () {
 
   return (dispatch, getState) => {
+
+    const id = getState().home.currentCard.id;
 
     const req = {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify({ song_id }),
+      body: JSON.stringify({ id }),
     };
 
-    fetch(API_URL + '/song', req)
-      .then(response => response.json())
-      .then(json => {
-        if (json.status === 'success') {
-          dispatch(nextCard());
-        } else {
-          dispatch(nextCard());
-        }
-      })
-      .catch(err => {
-        console.log('err',err);
-      });
+    return fetch(API_URL + '/hit', req)
+    .then(response => response.json())
+    .then(json => {
+      if (json.status === 'success') {
+        dispatch(nextCard());
+      } else {
+        dispatch(nextCard());
+      }
+    })
+    .catch(err => {
+      console.log('err',err);
+    });
   }
 }
