@@ -1,5 +1,5 @@
 // npm
-import React, { Component, PropTypes, View, StyleSheet, TextInput, Text, Dimensions, TouchableOpacity } from 'react-native';
+import React, { Component, PropTypes, View, StyleSheet, Image, TextInput, Text, Dimensions, TouchableOpacity } from 'react-native';
 // Pages
 import Video from 'react-native-video';
 
@@ -20,15 +20,17 @@ class Home extends Component {
   render () {
     return (
       <View style={styles.container} >
-        <Video source={{uri: "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"}}
-           style={styles.backgroundVideo}
-           resizeMode="cover"
-           repeat={true}
-           volume={1.0}
-           key="video2"
-        />
+        {
+          // <Video source={{uri: "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"}}
+          //  style={styles.backgroundVideo}
+          //  resizeMode="cover"
+          //  repeat={true}
+          //  volume={1.0}
+          //  key="video2"
+          //  />
+        }
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>PPOM</Text>
+          <Text style={styles.title}>PP</Text><Image source={require('../images/disc.png')} style={styles.disc} resizeMode={'contain'}/><Text style={styles.title}>M</Text>
         </View>
         <View style={styles.inputContainer}>
           <TextInput
@@ -36,17 +38,15 @@ class Home extends Component {
             onChangeText={(text) => this.setState({text})}
             value={this.state.text}
             placeholder='WHAT PARTY ARE YOU AT?'
+            placeholderTextColor='white'
           />
           <TouchableOpacity style={styles.button} onPress={() => this.props.changePage('Party')}>
-            <Text >GO TO THE PARTY</Text>
+            <Text style={styles.text}>GO TO THE PARTY</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.bottomContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => this.props.changePage('Search')}>
-            <Text >SEARCH FOR A TRACK</Text>
-          </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
-            <Text >START A PARTY</Text>
+            <Text style={styles.text}>START A PARTY</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'transparent'
+    backgroundColor: 'black'
   },
   input: {
     height: 50,
@@ -73,31 +73,40 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     alignSelf: 'center',
     borderRadius: 10,
-    paddingLeft: 30
+    paddingLeft: 30,
+    color: 'white',
+    textAlign: 'center'
   },
   titleContainer: {
     height: 100,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
     title: {
-      fontSize: 50
+      fontSize: 80,
+      color: 'white'
     },
   button: {
-    height: 50,
-    width: 300,
+    height: 40,
+    width: 200,
     borderWidth: 1,
     borderRadius: 10,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems:'center',
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor: '#0080ff'
+    marginTop: 20,
+    marginBottom: 20,
+    backgroundColor: '#b31217',
+    borderColor: 'white',
   },
   bottomContainer: {
-    height: 200
+    height: 100
   },
   inputContainer: {
-    height: 150
+    height: 350,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   backgroundVideo: {
     position: 'absolute',
@@ -105,7 +114,15 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-  }
+  },
+  text: {
+    color: 'white'
+  },
+  disc: {
+    height: 80,
+    width:  80,
+    paddingHorizontal: 5
+  },
 
 })
 

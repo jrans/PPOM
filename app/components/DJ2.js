@@ -18,9 +18,9 @@ const iPhone = {
 };
 
 var screenWidth = Dimensions.get('window').width;
-var screeHeight = Dimensions.get('window').height;
+var screenHeight = Dimensions.get('window').height;
 
-var deckHeight = 450;
+var deckHeight = 400;
 var deckWidth = screenWidth - 80 * iPhone.width;
 
 var SWIPE_THRESHOLD = screenWidth/3;
@@ -38,73 +38,27 @@ var Tinderable = React.createClass({
       enter: new Animated.Value(0.5),
       rowID: '',
       topcard: styles.normalCardContainer,
-      borderWide: 0.5,
+      borderWide: 5,
       rotateTop3: '',
-      deck: this.props.cards,
-      currentCard: this.props.cards[0],
-      nextCard: this.props.cards[1],
+      deck: this.props.deck,
+      currentCard: this.props.deck[0],
+      nextCard: this.props.deck[1],
       cardsToSave: []
     };
   },
 
-  getDefaultProps(){
-    return {
-      cards: [
-        {
-          artist: 'Adele',
-          song: 'Hello',
-          albumImage: '../images/disc.png',
-          artistImage: 'https://www.goodthingsguy.com/wp-content/uploads/2015/10/6981414-adele-pictures.jpg'
-        },
-        {
-          artist: 'Adele1',
-          song: 'Hello',
-          albumImage: '../images/disc.png',
-          artistImage: 'https://www.goodthingsguy.com/wp-content/uploads/2015/10/6981414-adele-pictures.jpg'
-        },
-        {
-          artist: 'Adele2',
-          song: 'Hello',
-          albumImage: '../images/disc.png',
-          artistImage: 'https://www.goodthingsguy.com/wp-content/uploads/2015/10/6981414-adele-pictures.jpg'
-        },
-        {
-          artist: 'Adele3',
-          song: 'Hello',
-          albumImage: '../images/disc.png',
-          artistImage: 'https://www.goodthingsguy.com/wp-content/uploads/2015/10/6981414-adele-pictures.jpg'
-        },
-        {
-          artist: 'Adele4',
-          song: 'Hello',
-          albumImage: '../images/disc.png',
-          artistImage: 'https://www.goodthingsguy.com/wp-content/uploads/2015/10/6981414-adele-pictures.jpg'
-        }
-      ]
-    }
-  },
 
   swipeLeft () {
-    this.setState({
-      deck:        this.state.deck.slice(1),
-      nextCard:    this.state.deck[2],
-      currentCard: this.state.nextCard,
-    });
+    this.props.actions.swipeLeft();
     this.state.pan.setValue({x: 0, y: 0});
     this.state.enter.setValue(0);
-    console.log("SWIPED", this.state);
+
   },
 
   swipeRight () {
-    this.setState({
-      deck:        this.state.deck.slice(1),
-      nextCard:    this.state.deck[2],
-      currentCard: this.state.nextCard,
-      cardsToSave: this.state.cardsToSave.concat(this.state.currentCard)
-    });
+    this.props.actions.swipeRight();
     this.state.pan.setValue({x: 0, y: 0});
     this.state.enter.setValue(0);
-    console.log("SWIPED", this.state);
   },
 
   componentWillMount () {
@@ -117,7 +71,7 @@ var Tinderable = React.createClass({
       }]),
       onPanResponderRelease: () => {
        this.state.pan.flattenOffset();
-       this.setState({borderWide: 0.5}, function() {
+       this.setState({borderWide: 5}, function() {
          this.getTopCardRotation(this.state.borderWide, this.state.rotateTop3);
        });
        if (Math.abs(this.state.pan.x.__getAnimatedValue()) > SWIPE_THRESHOLD) {
@@ -141,9 +95,10 @@ var Tinderable = React.createClass({
       }
     });
   },
+
   _handleStartShouldSetPanResponder: function(e: Object, gestureState: Object): boolean {
-    this.rotateTop = e.nativeEvent.pageY <= screeHeight/2-30;
-    this.setState({borderWide: 2}, function() {
+    this.rotateTop = e.nativeEvent.pageY <= screenHeight/2-30;
+    this.setState({borderWide: 5}, function() {
       this.getTopCardRotation(this.state.borderWide, this.rotateTop);
     });
     return true;
@@ -212,8 +167,8 @@ var Tinderable = React.createClass({
         },
         {
           borderColor: this.state.pan.x.interpolate({
-            inputRange: [-320, 0, 320],
-            outputRange: ['rgb(102, 102, 102)', 'rgb(221, 221, 221)', 'rgb(0, 145, 204)'],
+            inputRange: [-10, 0, 10],
+            outputRange: ['rgb(255, 0, 0)', 'rgb(221, 221, 221)', 'rgb(255, 0, 0)'],
           })
         }
       ]})
@@ -237,8 +192,8 @@ var Tinderable = React.createClass({
         },
         {
           borderColor: this.state.pan.x.interpolate({
-            inputRange: [-320, 0, 320],
-            outputRange: ['rgb(102, 102, 102)', 'rgb(221, 221, 221)', 'rgb(0, 145, 204)'],
+            inputRange: [-10, 0, 10],
+            outputRange: ['rgb(255, 0, 0)', 'rgb(221, 221, 221)', 'rgb(255, 0, 0)'],
           })
         },
 
@@ -261,9 +216,7 @@ var Tinderable = React.createClass({
             </Animated.View>
           </Animated.View>
           <View style={{height: 100}}/>
-          {
-            // <QuickSwipe yes={this.autoSwipe.bind(null, 'right')} no={this.autoSwipe.bind(null, 'left')}/>
-          }
+
         </View>
       </View>
     );
@@ -271,11 +224,13 @@ var Tinderable = React.createClass({
 });
 var styles = StyleSheet.create({
   superContainer: {
-    height: screeHeight - 78 * iPhone.scale - 67,
-    justifyContent: 'center'
+    height: screenHeight-300,
+    justifyContent: 'center',
+    backgroundColor: 'black',
+    marginTop: 100
   },
   container: {
-    marginTop: 200,
+    marginTop: 180,
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: 'transparent',

@@ -15,7 +15,6 @@ var Card = React.createClass({
   },
 
 	render () {
-    var artistImage = require(this.props.artistImage);
 
     return (
       <View style={styles.container}>
@@ -29,11 +28,11 @@ var Card = React.createClass({
             <Text style={ styles.textSmall }>{ this.props.song }</Text>
           </View>
           <View style={styles.record}>
-              <Image source={artistImage} style={styles.disc} resizeMode={'contain'}/>
+              <Image source={{ uri: this.props.artistImage }} style={styles.artistImage} resizeMode={'contain'}/>
           </View>
           <View style={styles.break}/>
           <View style={styles.summary}>
-              <Text style={styles.summaryTitle}>You Tube hits:</Text>
+              <Text style={styles.summaryTitle}>Hits:</Text>
           </View>
         </View>
       </View>
@@ -71,6 +70,10 @@ var styles = StyleSheet.create({
         height: 100,
         width:  100
       },
+    artistImage: {
+      height:  70,
+      width: 70
+    },
     textContainer: {
       flexDirection: 'column',
       marginLeft: 5,
@@ -126,8 +129,8 @@ var styles = StyleSheet.create({
     },
     break: {
       width: 60,
-      borderBottomWidth: 1,
-      borderBottomColor: '#DDD',
+      borderBottomWidth: 2,
+      borderBottomColor: 'red',
       height: 0,
       margin: 10,
     }
