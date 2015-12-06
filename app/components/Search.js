@@ -19,19 +19,7 @@ class Search extends Component {
     this.state = {
       trackPlaying: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
       searchValue: '',
-      searchResults: [{
-        artist:"artistartistartistartistartistartist",
-        title:   "songsongsongsongsongsong",
-        picture: "http://www.howrse.com/media/equideo/image/chevaux/adulte/americain/normal/300/bai_v1828806360.png",
-        uri:"http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"
-      },
-      {
-        artist:"artistartistartistartistartistartist",
-        title:   "songsongsongsongsongsong",
-        picture: "http://www.howrse.com/media/equideo/image/chevaux/adulte/americain/normal/300/bai_v1828806360.png",
-        uri:"http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"
-      }
-    ]
+      searchResults: []
     }
 
     this.changeTrack   = this.changeTrack.bind(this);
@@ -76,25 +64,38 @@ class Search extends Component {
     return fetch('http:localhost:9009/search?name='+this.state.searchValue, req)
       .then(response => response.json())
       .then(json => {
-        this.setState({searchResults: json.songs.reduce((results, artist) => {
-          artist.songs.reduce((results, song) => {
+
+        console.log(json);
+
+        console.log( json.data[0].songs.reduce((results, song) => {
             return results.concat[{
               party_name:   'test',
               url:          song.url,
               album_image:  song.album_image,
-              artist_image: artist.artist_image,
+              artist_image: json.data[0].artist_image,
               title:        song.title,
-              artist:       artist.name
+              artist:       json.data[0].name
             }]
           }, results)
         }, [])
-        });
+
+        this.setState({searchResults: json.data[0].songs.reduce((results, song) => {
+            return results.concat[{
+              party_name:   'test',
+              url:          song.url,
+              album_image:  song.album_image,
+              artist_image: json.data[0].artist_image,
+              title:        song.title,
+              artist:       json.data[0].name
+            }]
+          }, results)
+        }, [])
       })
       .catch(error => {
       });
   }
 
-  createResults (results) {
+  createResults () {
     const {
       changeTrack,
       addTrack,
@@ -103,7 +104,7 @@ class Search extends Component {
 
     return searchResults.map( (result,i) => <TrackResult
       picture      = {result.album_image}
-      name         = {result.artist}
+      artist       = {result.artist}
       title        = {result.title}
       url          = {'http://localhost:9009/song?youtube='+ result.url}
       trackPlaying = {trackPlaying}
