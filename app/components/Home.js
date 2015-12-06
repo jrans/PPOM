@@ -20,7 +20,7 @@ class Home extends Component {
   render () {
     return (
       <View style={{flex: 1}}>
-        <Video source={{uri: "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"}}
+        <Video source={{uri: 'jukebox'}}
          style={styles.backgroundVideo}
          resizeMode="cover"
          repeat={true}
@@ -31,6 +31,7 @@ class Home extends Component {
           <View style={styles.titleContainer}>
             <Text style={styles.title}>PP</Text><Image source={require('../images/disc.png')} style={styles.disc} resizeMode={'contain'}/><Text style={styles.title}>M</Text>
           </View>
+            <Text style={styles.subtitle}>{"The People's Party of Music"}</Text>
           <View style={styles.inputContainer}>
             <TextInput
               style={styles.input}
@@ -41,11 +42,6 @@ class Home extends Component {
             />
             <TouchableOpacity style={styles.button} onPress={() => this.props.changePage('Party')}>
               <Text style={styles.text}>GO TO THE PARTY</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.bottomContainer}>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.text}>START A PARTY</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -64,7 +60,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.3)'
+    backgroundColor: 'rgba(255, 255, 255, 0.4)'
   },
   input: {
     height: 80,
@@ -78,6 +74,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 22,
     fontFamily: 'Montserrat-Bold',
+    backgroundColor: 'rgba(255, 255, 255, 0.6)'
   },
   titleContainer: {
     height: 100,
@@ -86,12 +83,18 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
     title: {
-      fontSize: 80,
+      fontSize: 120,
       fontFamily: 'Montserrat-Bold',
       color: 'white'
     },
+    subtitle: {
+      paddingTop: 20,
+      fontSize: 27,
+      fontFamily: 'Montserrat-Bold',
+      color: '#b31217',
+    },
   button: {
-    height: 40,
+    height: 60,
     width: 200,
     borderWidth: 1,
     borderRadius: 10,
@@ -119,12 +122,13 @@ const styles = StyleSheet.create({
     right: 0,
   },
   text: {
+    fontSize: 17,
     color: 'white',
     fontFamily: 'Montserrat-Bold',
   },
   disc: {
-    height: 70,
-    width:  70,
+    height: 90,
+    width:  90,
     paddingHorizontal: 5
   },
 

@@ -36,11 +36,15 @@ class Party extends Component {
     }
 
     this.finishTrack=this.finishTrack.bind(this);
+    this.createResults = this.createResults.bind(this);
   }
 
   createResults (queue) {
-    return queue.map( (result,i) => <QueuedTrack
-      {...result}
+    return this.props.playlist.map( (result,i) => <QueuedTrack
+      name = {result.artist}
+      title= {result.title}
+      picture={result.album_image}
+      url={'http://localhost:9009/song?youtube='+result.url}
       key          = {i}
     />)
   }
