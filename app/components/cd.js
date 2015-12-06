@@ -25,14 +25,14 @@ var Card = React.createClass({
           <View style={styles.break}/>
           <View style={styles.titles}>
             <Text style={ styles.textBig}>{ this.props.artist }</Text>
-            <Text style={ styles.textSmall }>{ this.props.song }</Text>
+            <Text style={ styles.textSmall }>{ this.props.title }</Text>
           </View>
           <View style={styles.record}>
-              <Image source={{ uri: this.props.artistImage }} style={styles.artistImage} resizeMode={'contain'}/>
+              <Image source={{ uri: this.props.artist_image }} style={styles.artistImage} resizeMode={'contain'}/>
           </View>
           <View style={styles.break}/>
           <View style={styles.summary}>
-              <Text style={styles.summaryTitle}>Hits:</Text>
+              <Text style={styles.summaryTitle}>{'Hits: ' + this.props.hits}</Text>
           </View>
         </View>
       </View>

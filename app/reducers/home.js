@@ -1,5 +1,22 @@
 import { RETURN_DECK, RETURN_PLAYLIST, NEXT_CARD } from '../constants/ActionTypes';
 
+/**
+ * Deck example object
+ * @type {String}
+ *
+  {
+    album_image: "album-image-979620007"
+    artist: "artist-979620007"
+    artist_image: "artist-image-979620007"
+    hits: 144
+    id: "47abee20-14c2-48d4-b361-385f292863a3"
+    party_name: "test"
+    title: "title-979620007"
+    type: "suggestion"
+    url: "url-979620007"
+  }
+ */
+
 export const initialState = {
   deck:          [],
   currentCard:   {},
@@ -9,14 +26,10 @@ export const initialState = {
 
 export default function home(state = initialState, action) {
 
-  console.log('hey');
-
   switch (action.type) {
     case RETURN_DECK:
 
       const bigDeck = state.deck.concat(action.deck);
-
-      console.log('bigDeck',bigDeck);
 
       return {
         ...state,

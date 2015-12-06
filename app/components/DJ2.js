@@ -39,10 +39,6 @@ var Tinderable = React.createClass({
       topcard: styles.normalCardContainer,
       borderWide: 5,
       rotateTop3: '',
-      deck: this.props.deck,
-      currentCard: this.props.deck[0],
-      nextCard: this.props.deck[1],
-      cardsToSave: []
     };
   },
 
@@ -210,11 +206,11 @@ var Tinderable = React.createClass({
             <Blank/>
           </View>
           <Animated.View style={this.getMiddleCardRotation()}>
-            <CD {...this.state.nextCard}/>
+            <CD {...this.props.nextCard}/>
           </Animated.View>
           <Animated.View {...this._panResponder.panHandlers} style={this.state.topcard}>
             <Animated.View style={this.getCardFadeOut()}>
-              <CD {...this.state.currentCard} />
+              <CD {...this.props.currentCard} />
             </Animated.View>
           </Animated.View>
           <View style={{height: 100}}/>
