@@ -18,9 +18,9 @@ const iPhone = {
 };
 
 var screenWidth = Dimensions.get('window').width;
-var screeHeight = Dimensions.get('window').height;
+var screenHeight = Dimensions.get('window').height;
 
-var deckHeight = 450;
+var deckHeight = 400;
 var deckWidth = screenWidth - 80 * iPhone.width;
 
 var SWIPE_THRESHOLD = screenWidth/3;
@@ -33,7 +33,6 @@ var Tinderable = React.createClass({
   },
 
   getInitialState () {
-    console.log("PROPS", this.props);
     return {
       pan: new Animated.ValueXY(),
       enter: new Animated.Value(0.5),
@@ -98,7 +97,7 @@ var Tinderable = React.createClass({
   },
 
   _handleStartShouldSetPanResponder: function(e: Object, gestureState: Object): boolean {
-    this.rotateTop = e.nativeEvent.pageY <= screeHeight/2-30;
+    this.rotateTop = e.nativeEvent.pageY <= screenHeight/2-30;
     this.setState({borderWide: 5}, function() {
       this.getTopCardRotation(this.state.borderWide, this.rotateTop);
     });
@@ -225,12 +224,13 @@ var Tinderable = React.createClass({
 });
 var styles = StyleSheet.create({
   superContainer: {
-    height: screeHeight,
+    height: screenHeight-300,
     justifyContent: 'center',
-    backgroundColor: 'black'
+    backgroundColor: 'black',
+    marginTop: 100
   },
   container: {
-    marginTop: 100,
+    marginTop: 180,
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: 'transparent',

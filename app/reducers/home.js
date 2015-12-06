@@ -46,16 +46,16 @@ export default function home(state = initialState, action) {
     case RETURN_DECK:
       return {
         ...state,
-        deck:        bigDeck.slice(2),
-        nextCard:    bigDeck.slice(1,2)[0],
-        currentCard: bigDeck.slice(0,1)[0],
+        deck:        state.deck.slice(2),
+        nextCard:    state.deck.slice(1,2)[0],
+        currentCard: state.deck.slice(0,1)[0],
       };
     case NEXT_CARD:
       return {
         ...state,
         deck:        state.deck.slice(1),
-        nextCard:    state.deck[0],
-        currentCard: state.nextCard,
+        nextCard:    state.deck[1],
+        currentCard: state.deck[2],
       };
     case RETURN_PLAYLIST:
       return {

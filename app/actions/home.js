@@ -1,4 +1,4 @@
-// import fetch from 'isomorphic-fetch';
+import fetch from 'isomorphic-fetch';
 
 import * as types from '../constants/ActionTypes.js';
 
@@ -43,7 +43,7 @@ export function swipeLeft () {
 export function swipeRight () {
 
   return (dispatch, getState) => {
-    return dispatch(nextCard());
+    return dispatch(saveSong());
   }
 };
 
@@ -60,7 +60,7 @@ export function getDeck (partyName) {
       },
     };
 
-    const partyID = partyName || test
+    const partyID = partyName || 'test'
 
     return fetch(API_URL + '/party?=' + partyID, req)
     .then(response => response.json())
@@ -80,27 +80,21 @@ export function getDeck (partyName) {
   }
 };
 
-export function confirmBet (price_id, stake) {
+export function saveSong (song_id) {
 
   return (dispatch, getState) => {
-
-    dispatch(openProcessingBet());
-
-    const { store: { sessionToken } } = getState();
 
     const req = {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': sessionToken,
       },
-      body: JSON.stringify({ price_id, stake }),
+      body: JSON.stringify({ song_id }),
     };
 
-    fetch(API_URL + '/bet', req)
+    fetch(API_URL + '/song', req)
       .then(response => response.json())
       .then(json => {
-
         if (json.status === 'success') {
           dispatch(nextCard());
         } else {

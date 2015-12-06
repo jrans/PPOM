@@ -67,8 +67,8 @@ var styles = StyleSheet.create({
       width: screenWidth-70,
     },
       disc: {
-        height: 120,
-        width:  120
+        height: 100,
+        width:  100
       },
     artistImage: {
       height:  70,
