@@ -34,7 +34,7 @@ var Card = React.createClass({
           </View>
           <View style={styles.break}/>
           <View style={styles.summary}>
-              <Text style={styles.summaryTitle}>{"Hits: " + this.props.hits}</Text>
+            <Text style={styles.summaryTitle}>{"Hits: " + this.props.hits}</Text>
           </View>
         </View>
       </View>
