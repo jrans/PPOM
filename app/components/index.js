@@ -63,23 +63,13 @@ class App extends Component {
             <View style = { styles.container } >
               <DJ/>
                 <Animated.View style = { [{ height: this.state.topTabHeight, top: 0 }, styles.tabContainer ] }>
-                  <Party tabPress={this.toggleHeight.bind(this,'topTab', topTabHeight)} bottomTab={bottomTab}/>
+                  <Party tabPress={this.toggleHeight.bind(this,'topTab', topTabHeight)} bottomTab={bottomTab} partyName={"Freds House!"}/>
                 </Animated.View>
 
               <Animated.View
                 style = { [{ height: bottomTabHeight, bottom: 0 }, styles.tabContainer] }
               >
-                <Search/>
-                <TouchableOpacity
-                  onPress = { () => this.toggleHeight('bottomTab', bottomTabHeight) }
-                  style   = { [styles.tab, {height: bottomTab ? screenHeight-tabHeight : tabHeight}] }
-                >
-                  <Image
-                    resizeMode = 'contain'
-                    style      = { [styles.arrow, bottomTab && { top: 10, left: screenWidth - 40, position: 'absolute' }] }
-                    source     = { bottomTab ? require('../images/arrow-down.png') : require('../images/up-arrow.png') }
-                  />
-                </TouchableOpacity>
+                <Search tabPress={this.toggleHeight.bind(this,'bottomTab', bottomTabHeight)}/>
               </Animated.View>
             </View>
          )

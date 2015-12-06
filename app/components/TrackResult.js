@@ -63,12 +63,15 @@ class TrackResults extends Component {
         <TouchableOpacity style={styles.add} onPress={play} >
           <Image source={ paused ? require('../images/play.png') : require('../images/pause.png') } resizeMode='contain' style={styles.add} />
         </TouchableOpacity>
-        <Text style = {styles.artist} >
-          {artist}
-        </Text>
-        <Text style = {styles.title} >
-          {title}
-        </Text>
+        <Image source={{uri : picture}} resizeMode='contain' style={styles.icon}/>
+        <View style={styles.songInfo}>
+          <Text style = {styles.title} >
+            {title}
+          </Text>
+          <Text style = {styles.artist} >
+            {artist}
+          </Text>
+        </View>
         <TouchableOpacity style={styles.add} onPress={addTrack} >
           <Image source={require('../images/plus.png')} resizeMode='contain' style={styles.add} />
         </TouchableOpacity>
@@ -80,29 +83,35 @@ class TrackResults extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 50,
+    height: 80,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
     borderWidth: 1,
   },
+  songInfo: {
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    paddingVertical: 15,
+    height: 80
+  },
     artist: {
-      fontSize: 15,
-      color: 'black',
-      fontFamily: 'Montserrat-Regular'
-    },
-    title: {
-      fontSize: 15,
+      fontSize: 13,
       color: 'black',
       fontFamily: 'Montserrat-Light'
     },
+    title: {
+      fontSize: 18,
+      color: 'black',
+      fontFamily: 'Montserrat-Regular'
+    },
     icon: {
-      height: 20,
-      width:  20,
+      height: 40,
+      width:  40,
     },
     add : {
-      height: 30,
-      width: 30,
+      height: 33,
+      width: 33,
     },
 
 })

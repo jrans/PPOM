@@ -60,7 +60,7 @@ class Party extends Component {
       state: {queue},
       createResults,
       finishTrack,
-      props: {tabPress, bottomTab}
+      props: {tabPress, bottomTab, partyName}
     } = this;
 
     return (

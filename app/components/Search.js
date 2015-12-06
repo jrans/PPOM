@@ -1,9 +1,14 @@
 // npm
-import React, { Component, PropTypes, View, StyleSheet, TextInput, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
+import React, { Component, PropTypes, View, StyleSheet, Dimensions, TextInput, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
 // Components
 import TrackResult from './TrackResult.js';
 
 import Video from 'react-native-video';
+
+const {
+  height: screenHeight,
+  width: screenWidth
+} = Dimensions.get('window');
 
 
 class Search extends Component {
@@ -15,11 +20,18 @@ class Search extends Component {
       trackPlaying: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
       searchValue: '',
       searchResults: [{
-        artist:"horse",
-        title:   "my lovely horse",
+        artist:"artistartistartistartistartistartist",
+        title:   "songsongsongsongsongsong",
         picture: "http://www.howrse.com/media/equideo/image/chevaux/adulte/americain/normal/300/bai_v1828806360.png",
         uri:"http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"
-      }]
+      },
+      {
+        artist:"artistartistartistartistartistartist",
+        title:   "songsongsongsongsongsong",
+        picture: "http://www.howrse.com/media/equideo/image/chevaux/adulte/americain/normal/300/bai_v1828806360.png",
+        uri:"http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"
+      }
+    ]
     }
 
     this.changeTrack   = this.changeTrack.bind(this);
@@ -99,12 +111,13 @@ class Search extends Component {
       state: {searchValue},
       search,
       createResults,
-      searchTracks
+      searchTracks,
+      props: { tabPress }
     } = this;
 
     return (
       <View style = {styles.container}>
-        <View style= {styles.searchBar}>
+        <TouchableOpacity onPress={tabPress} style= {styles.searchBar}>
           <TextInput
             style         = { styles.searchInput }
             placeholder   = "Search by track, artist, keyword ... "
@@ -120,7 +133,7 @@ class Search extends Component {
               <Image source={require('../images/search.png')} style={styles.searchIcon} resizeMode={'contain'}/>
             </View>
           </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
         <ScrollView
           ref                              = {component=>this._funkyScrollView=component}
           automaticallyAdjustContentInsets = {false}
@@ -157,14 +170,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flexDirection:   'column',
     justifyContent:  'space-between',
-    marginTop: 30,
   },
     video: {
       height:0,
       width: 0
     },
     searchBar: {
-      height: 70,
+      height: 100,
       backgroundColor: 'black',
       flexDirection: 'row',
       paddingHorizontal: 20,
@@ -173,14 +185,14 @@ const styles = StyleSheet.create({
       searchInput: {
         color: 'black',
         flex: 1,
-        fontSize: 13,
+        fontSize: 16,
         fontFamily: 'Montserrat-Regular',
         borderRadius: 15,
         backgroundColor: '#ffffff',
         borderColor: '#ffffff',
         paddingLeft: 15,
-        height: 40,
-        alignSelf: 'center'
+        height: 50,
+        alignSelf: 'center',
       },
       iconContainer: {
         backgroundColor: 'white',
@@ -191,8 +203,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
         searchIcon: {
-          width: 15,
-          height: 15,
+          width: 20,
+          height: 20,
         },
     trackScroll: {
       height: 100,
