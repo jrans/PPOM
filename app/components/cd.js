@@ -12,6 +12,7 @@ var Card = React.createClass({
     song:         PropTypes.string,
     artistImage:  PropTypes.string,
     albumImage:   PropTypes.string,
+    hit:          PropTypes.number
   },
 
 	render () {
@@ -24,15 +25,16 @@ var Card = React.createClass({
             </View>
           <View style={styles.break}/>
           <View style={styles.titles}>
-            <Text style={ styles.textBig}>{ this.props.artist }</Text>
-            <Text style={ styles.textSmall }>{ this.props.title }</Text>
+            <Text style={ styles.textBig}>{ this.props.song }</Text>
+            <Text style={ styles.textSmall }>{ "Artist: " + this.props.artist }</Text>
           </View>
           <View style={styles.record}>
-              <Image source={{ uri: this.props.artist_image }} style={styles.artistImage} resizeMode={'contain'}/>
+              <Image source={{ uri: this.props.artistImage }} style={styles.artistImage} resizeMode={'contain'}/>
+              <Image source={{ uri: this.props.albumImage }} style={styles.artistImage} resizeMode={'contain'}/>
           </View>
           <View style={styles.break}/>
           <View style={styles.summary}>
-              <Text style={styles.summaryTitle}>{'Hits: ' + this.props.hits}</Text>
+            <Text style={styles.summaryTitle}>{"Hits: " + this.props.hits}</Text>
           </View>
         </View>
       </View>
@@ -80,15 +82,6 @@ var styles = StyleSheet.create({
       marginRight: 5,
       alignItems: 'center'
     },
-    textVS: {
-      fontSize: 12 * iPhone.scale,
-      textAlign: 'center',
-    },
-    textTime: {
-      fontSize: 11,
-      textAlign: 'center',
-      marginTop: 1,
-    },
     titles: {
       flex: 3.2,
       alignItems: 'center',
@@ -98,10 +91,13 @@ var styles = StyleSheet.create({
       fontSize: 35 * iPhone.scale,
       textAlign: 'center',
       marginBottom: 10,
+      fontFamily: 'Montserrat-Bold',
     },
     textSmall: {
-      fontSize: 30 * iPhone.scale,
+      fontSize: 20 * iPhone.scale,
       textAlign: 'center',
+      fontFamily: 'Montserrat-Light',
+      fontStyle: 'italic'
     },
     summary: {
       flex: 2,
