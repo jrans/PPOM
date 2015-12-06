@@ -7,6 +7,7 @@ module.exports = (o) => {
   const streamMp3 = require('./handlers/stream.js')(o.Hum);
   const getParty  = require('./handlers/party.js')(o.Knex);
   const addHit    = require('./handlers/hit.js')(o.Knex);
+  const addSong   = require('./handlers/add.js')(o.Knex);
 
   return [
     {
@@ -56,6 +57,23 @@ module.exports = (o) => {
         },
       },
       handler: addHit,
-    }
+    },
+    {
+      method: 'POST',
+      path: '/song',
+      config: {
+        validate: {
+          payload: {
+            party_name:   Joi.string().required(),
+            url:          Joi.string().required(),
+            album_image:  Joi.string().required(),
+            artist_image: Joi.string().required(),
+            title:        Joi.string().required(),
+            artist:       Joi.string().required(),
+          },
+        },
+      },
+      handler: addSong,
+    },
   ];
 };

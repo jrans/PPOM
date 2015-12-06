@@ -1,6 +1,7 @@
 'use strict';
 
 const Promise = require('bluebird');
+const uuid = require('node-uuid');
 const R = require('ramda');
 
 module.exports = env => {
@@ -46,10 +47,26 @@ module.exports = env => {
         return cb(undefined,resUpdate);
       });
     });
-  }
+  };
+
+  const addSong = (song,cb) => {
+
+    song['id']   = uuid.v4();
+    song['type'] = 'suggestion';
+
+    knex('song').insert(song,'*').asCallback((err,data) => {
+
+      if (err) {
+        return cb(err,undefined);
+      }
+
+      return cb(undefined,data);
+    });
+  };
 
   return {
     getParty,
     addHit,
+    addSong,
   };
 };

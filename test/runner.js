@@ -9,6 +9,7 @@ require('./api/handlers/search.test.js');
 require('./api/handlers/stream.test.js');
 require('./api/handlers/party.test.js');
 require('./api/handlers/hit.test.js');
+require('./api/handlers/add.test.js');
 require('./api/services/hum.test.js');
 require('./api/services/utils.test.js');
 // ----------------------------------------------------------
