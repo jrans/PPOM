@@ -33,6 +33,7 @@ var Tinderable = React.createClass({
   },
 
   getInitialState () {
+    console.log("PROPS", this.props);
     return {
       pan: new Animated.ValueXY(),
       enter: new Animated.Value(0.5),
@@ -40,68 +41,23 @@ var Tinderable = React.createClass({
       topcard: styles.normalCardContainer,
       borderWide: 5,
       rotateTop3: '',
-      deck: this.props.cards,
-      currentCard: this.props.cards[0],
-      nextCard: this.props.cards[1],
+      deck: this.props.deck,
+      currentCard: this.props.deck[0],
+      nextCard: this.props.deck[1],
       cardsToSave: []
     };
   },
 
-  getDefaultProps(){
-    return {
-      cards: [
-        {
-          artist: 'Adele',
-          song: 'Hello',
-          albumImage: '../images/disc.png',
-          artistImage: 'https://www.goodthingsguy.com/wp-content/uploads/2015/10/6981414-adele-pictures.jpg'
-        },
-        {
-          artist: 'Adele1',
-          song: 'Hello',
-          albumImage: '../images/disc.png',
-          artistImage: 'https://www.goodthingsguy.com/wp-content/uploads/2015/10/6981414-adele-pictures.jpg'
-        },
-        {
-          artist: 'Adele2',
-          song: 'Hello',
-          albumImage: '../images/disc.png',
-          artistImage: 'https://www.goodthingsguy.com/wp-content/uploads/2015/10/6981414-adele-pictures.jpg'
-        },
-        {
-          artist: 'Adele3',
-          song: 'Hello',
-          albumImage: '../images/disc.png',
-          artistImage: 'https://www.goodthingsguy.com/wp-content/uploads/2015/10/6981414-adele-pictures.jpg'
-        },
-        {
-          artist: 'Adele4',
-          song: 'Hello',
-          albumImage: '../images/disc.png',
-          artistImage: 'https://www.goodthingsguy.com/wp-content/uploads/2015/10/6981414-adele-pictures.jpg'
-        }
-      ]
-    }
-  },
 
   swipeLeft () {
-    this.setState({
-      deck:        this.state.deck.slice(1),
-      nextCard:    this.state.deck[2],
-      currentCard: this.state.nextCard,
-    });
+    this.props.actions.swipeLeft();
     this.state.pan.setValue({x: 0, y: 0});
     this.state.enter.setValue(0);
 
   },
 
   swipeRight () {
-    this.setState({
-      deck:        this.state.deck.slice(1),
-      nextCard:    this.state.deck[2],
-      currentCard: this.state.nextCard,
-      cardsToSave: this.state.cardsToSave.concat(this.state.currentCard)
-    });
+    this.props.actions.swipeRight();
     this.state.pan.setValue({x: 0, y: 0});
     this.state.enter.setValue(0);
   },
@@ -140,6 +96,7 @@ var Tinderable = React.createClass({
       }
     });
   },
+
   _handleStartShouldSetPanResponder: function(e: Object, gestureState: Object): boolean {
     this.rotateTop = e.nativeEvent.pageY <= screeHeight/2-30;
     this.setState({borderWide: 5}, function() {

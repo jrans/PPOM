@@ -4,7 +4,7 @@ import React, { Component, PropTypes, View } from 'react-native';
 import Home from './Home.js';
 import Search from './Search.js';
 import Party from './Party.js';
-import DJ from './DJ2.js';
+import DJ from '../containers/Home.js';
 
 class App extends Component {
 
