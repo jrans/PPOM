@@ -36,7 +36,7 @@ class Player extends Component {
 
     return (
       <View style = {styles.container} >
-        { uri!==undefined && <Video
+        { uri && <Video
             resizeMode  = "cover"
             source      = {{uri: uri || 'blank'}}
             style       = {styles.video}

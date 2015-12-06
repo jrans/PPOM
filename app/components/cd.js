@@ -30,7 +30,8 @@ var Card = React.createClass({
           </View>
           <View style={styles.record}>
               <Image source={{ uri: this.props.artist_image }} style={styles.artistImage} resizeMode={'contain'}/>
-              <Image source={{ uri: this.props.album_image }} style={styles.artistImage} resizeMode={'contain'}/>
+              <View style={{width: 20}}/>
+              <Image source={{ uri: this.props.album_image }} style={styles.albumImage} resizeMode={'contain'}/>
           </View>
           <View style={styles.break}/>
           <View style={styles.summary}>
@@ -73,8 +74,12 @@ var styles = StyleSheet.create({
         width:  100
       },
     artistImage: {
-      height:  70,
-      width: 70
+      height:  80,
+      width: 80
+    },
+    albumImage : {
+      height:  150,
+      width: 100
     },
     textContainer: {
       flexDirection: 'column',

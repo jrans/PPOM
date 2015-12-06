@@ -18,7 +18,7 @@ class TrackResults extends Component {
   componentWillReceiveProps(props) {
 
     if (props.uri!==props.trackPlaying) {
-      this._player.seek(0);
+      this._player && this._player.seek(0);
       this.setState({paused:true})
     }
   }
@@ -50,7 +50,7 @@ class TrackResults extends Component {
 
     return (
       <View style = {styles.container} >
-        <Video
+        { uri && <Video
           resizeMode  = "cover"
           source      = {{uri}}
           style       = {styles.video}
@@ -60,6 +60,7 @@ class TrackResults extends Component {
           onEnd       = {stop}
           ref         = {component=>this._player=component}
         />
+        }
         <TouchableOpacity style={styles.add} onPress={play} >
           <Image source={ paused ? require('../images/play.png') : require('../images/pause.png') } resizeMode='contain' style={styles.add} />
         </TouchableOpacity>

@@ -3,7 +3,7 @@ import React, { Component, PropTypes, View, Image, TouchableOpacity, Animated, E
 // Pages
 import Home   from './Home.js';
 import Search from './Search.js';
-import Party  from './Party.js';
+import Party  from '../containers/Party.js';
 import DJ     from '../containers/Home.js';
 
 var {
@@ -11,7 +11,7 @@ var {
   height: screenHeight
 } = Dimensions.get('window');
 
-const tabHeight = 85;
+const tabHeight = 90;
 
 class App extends Component {
 
@@ -79,7 +79,6 @@ class App extends Component {
                 style = { [{ height: bottomTabHeight, bottom: 0 }, styles.tabContainer] }
               >
                 <Search bottomTab={bottomTab} tabPress={this.toggleHeight.bind(this,'bottomTab', bottomTabHeight)} refCreator={refCreator}/>
-
               </Animated.View>
             </View>
          )

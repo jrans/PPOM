@@ -14,13 +14,25 @@ class QueuedTrack extends Component {
 
     return (
       <View style = {styles.container} >
-        <Image source = {{uri:picture}} style = {styles.icon} />
-        <Text style = {styles.artist} >
-          {artist}
-        </Text>
-        <Text style = {styles.title} >
-          {title}
-        </Text>
+        <View style={styles.left}>
+          <Image source = {{uri:picture}} style = {styles.icon} />
+          <View style={styles.songInfo}>
+            <Text style = {styles.title} >
+              {title}
+            </Text>
+            <Text style = {styles.artist} >
+              {artist}
+            </Text>
+        </View>
+        </View>
+        <View style={styles.submission}>
+          <Text style = {styles.submitter} >
+            jacky92
+          </Text>
+          <Text style = {styles.adds} >
+            {'   +4'}
+          </Text>
+        </View>
       </View>
     );
   }
@@ -29,23 +41,50 @@ class QueuedTrack extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height:30,
-    backgroundColor: 'grey',
+    height:50,
+    backgroundColor: 'black',
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    paddingHorizontal: 10
   },
-    artist: {
+  left: {
+    flexDirection: 'row',
+  },
+
+  submission: {
+    flexDirection: 'row',
+    borderWidth: 1
+  },
+    submitter: {
       fontSize: 20,
-      color: 'blue'
+      color: 'white',
+      fontFamily: 'Montserrat-Light'
     },
-    title: {
+    adds: {
       fontSize: 20,
-      color: 'blue'
+      color: '#b31217',
+      fontFamily: 'Montserrat'
     },
+    songInfo: {
+      flexDirection: 'column',
+      justifyContent: 'space-around',
+      paddingVertical: 5,
+      height: 50
+    },
+      artist: {
+        fontSize: 13,
+        color: 'white',
+        fontFamily: 'Montserrat-Light'
+      },
+      title: {
+        fontSize: 18,
+        color: 'white',
+        fontFamily: 'Montserrat-Regular'
+      },
     icon: {
-      height: 20,
-      width:  20,
+      height: 50,
+      width:  50,
     }
 })
 
