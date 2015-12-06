@@ -34,7 +34,7 @@
     "react": "^0.14.3",
     "react-native": "^0.14.0",
     "react-native-video": "^0.6.1",
-    "react-redux": "^4.0.0",
+    "react-redux": "^3.0.1",
     "redux": "^3.0.4",
     "redux-logger": "^2.0.4",
     "redux-thunk": "^1.0.0",

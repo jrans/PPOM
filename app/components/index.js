@@ -57,12 +57,14 @@ class App extends Component {
 
     switch(state.page) {
       case 'Home':
-        return <Home changePage = { changePage } changeState = { changeState } />
+        return <Search/>
+        // <Home changePage = { changePage } changeState = { changeState } />
       case 'Party':
       return (
             <View style = { styles.container } >
               <DJ />
               <Animated.View style = { [{ height: this.state.topTabHeight, top: 0 }, styles.tabContainer ] }>
+                <Party/>
                 <TouchableOpacity
                   onPress = { () => this.toggleHeight('topTab', this.state.topTabHeight) }
                   style   = { [styles.tab, { height: this.state.topTab ? screenHeight-tabHeight : tabHeight }] }
@@ -78,6 +80,7 @@ class App extends Component {
               <Animated.View
                 style = { [{ height: this.state.bottomTabHeight, bottom: 0 }, styles.tabContainer] }
               >
+                <Search/>
                 <TouchableOpacity
                   onPress = { () => this.toggleHeight('bottomTab', this.state.bottomTabHeight) }
                   style   = { [styles.tab, {height: this.state.bottomTab ? screenHeight-tabHeight : tabHeight}] }
@@ -105,13 +108,14 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   tabContainer: {
+    width: screenWidth,
     backgroundColor: 'white',
     position: 'absolute',
     flexDirection: 'row',
   },
   tab: {
     right: 10,
-    width: screenWidth,
+    width: 40,
     justifyContent: 'center',
     alignItems: 'center'
   },
