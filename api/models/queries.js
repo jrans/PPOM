@@ -64,9 +64,42 @@ module.exports = env => {
     });
   };
 
+  const slice = (id,cb) => {
+    knex('song').where('id',id).update('type','played','*').asCallback((err,res) => {
+
+      if (err) {
+        return cb(err,undefined);
+      }
+
+      knex('song')
+      .select('*')
+      .where('party_name', res[0].party_name)
+      .orderBy('hits', 'desc')
+      .asCallback((errHits,resHist) => {
+
+        if (errHits) {
+          return cb(errHits,undefined);
+        }
+
+        knex('song')
+        .where('id',resHist[0].id)
+        .update('type','playlist','*')
+        .asCallback((errUpdate,resUpdate) => {
+
+          if (errUpdate) {
+            return cb(errUpdate,undefined);
+          }
+
+          return cb(undefined,resUpdate);
+        });
+      });
+    });
+  };
+
   return {
     getParty,
     addHit,
     addSong,
+    slice,
   };
 };

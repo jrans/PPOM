@@ -37,3 +37,22 @@ test('api:models:queries:addHit -> should add one hit', t => {
     });
   });
 });
+
+test('api:models:queries:slice -> should slice one song', t => {
+
+  const mockId = uuid.v4();
+  const songMock = utils.createSong({name:'test',id:mockId,hits:100});
+
+  knex('song').insert(songMock,'*').asCallback((err,data) => {
+
+    if (err) {
+      return t.end(err);
+    }
+
+    queries.slice(mockId, (err,data) => {
+
+      t.ok(data[0].type,'playlist','added one playlist');
+      t.end();
+    });
+  });
+});

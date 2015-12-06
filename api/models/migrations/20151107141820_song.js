@@ -9,7 +9,7 @@ exports.up = function(knex, Promise) {
     table.string('album_image').notNullable();
     table.string('url').notNullable();
     table.integer('hits').notNullable().defaultTo(0);
-    table.enu('type', ['suggestion','playlist']).defaultTo('suggestion').notNullable();
+    table.enu('type', ['suggestion','playlist','played']).defaultTo('suggestion').notNullable();
     table.string('party_name').references('party.name').notNullable().onDelete('CASCADE');
   });
 };

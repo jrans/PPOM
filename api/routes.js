@@ -8,6 +8,7 @@ module.exports = (o) => {
   const getParty  = require('./handlers/party.js')(o.Knex);
   const addHit    = require('./handlers/hit.js')(o.Knex);
   const addSong   = require('./handlers/add.js')(o.Knex);
+  const sliceList = require('./handlers/slice.js')(o.Knex);
 
   return [
     {
@@ -75,5 +76,17 @@ module.exports = (o) => {
       },
       handler: addSong,
     },
+    {
+      method: 'POST',
+      path: '/slice',
+      config: {
+        validate: {
+          payload: {
+            id: Joi.string().required(),
+          },
+        },
+      },
+      handler: sliceList,
+    }
   ];
 };
