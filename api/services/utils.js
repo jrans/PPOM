@@ -1,6 +1,7 @@
 'use strict';
 
 const R = require('ramda');
+const youtubeThumbnail = require('youtube-thumbnail');
 
 const artistsInfo = (arrayOfArtists) => {
 
@@ -26,9 +27,10 @@ const artistsInfo = (arrayOfArtists) => {
 const getSongs = (arrayOfSongs) => {
   return arrayOfSongs.map(elm => {
     return {    
-      id:    elm._id,
-      title: elm.title,
-      url:   elm.urls.youtube,
+      id:          elm._id,
+      title:       elm.title,
+      url:         elm.urls.youtube,
+      album_image: youtubeThumbnail(elm.urls.youtube).medium.url,
     }
   }).slice(0,10);
 }
