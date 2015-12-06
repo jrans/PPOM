@@ -8,6 +8,7 @@ class Player extends Component {
 
   render () {
     const {
+      props: {party}
     } = this;
 
     return (
@@ -15,6 +16,7 @@ class Player extends Component {
         <View style={styles.titleContainer}>
           <Text style={styles.title}>PP</Text><Image source={require('../images/disc.png')} style={styles.disc} resizeMode={'contain'}/><Text style={styles.title}>M</Text>
         </View>
+        <Text style={styles.party}>{party}</Text>
       </View>
     );
   }
@@ -25,11 +27,12 @@ const styles = StyleSheet.create({
   container: {
     height:75,
     backgroundColor: 'white',
-    flexDirection: 'column',
-    alignItems: 'stretch'
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
     titleContainer: {
-      height: 100,
+      height: 60,
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center'
@@ -44,6 +47,10 @@ const styles = StyleSheet.create({
         width:  50,
         paddingHorizontal: 5
       },
+      party: {
+        fontSize:40,
+        fontFamily: 'Montserrat',
+      }
 })
 
 export default Player;
