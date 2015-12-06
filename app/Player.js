@@ -4,7 +4,7 @@ import React, { Component, PropTypes, View, StyleSheet, Text,  Image, TouchableO
 import Video from 'react-native-video';
 
 
-class TrackResults extends Component {
+class Player extends Component {
 
   constructor () {
     super();
@@ -12,25 +12,20 @@ class TrackResults extends Component {
       paused:true
     }
     this.play=this.play.bind(this);
-    this.stop=this.stop.bind(this);
   }
-
-  componentWillReceiveProps(props) {
-
-    if (props.uri!==props.trackPlaying) {
-      this._player.seek(0);
-      this.setState({paused:true})
-    }
-  }
+  //
+  // componentWillReceiveProps(props) {
+  //
+  //   if (props.uri!==props.trackPlaying) {
+  //     this._player.seek(0);
+  //     this.setState({paused:true})
+  //   }
+  // }
 
   play () {
     this.setState({paused:!this.state.paused});
-    this.props.changeTrack();
   }
 
-  stop () {
-    this.setState({paused:true});
-  }
 
   render () {
     const {
@@ -39,27 +34,29 @@ class TrackResults extends Component {
         title,
         picture,
         uri,
-        restart,
-        trackPlaying,
-        addTrack
+        next
       },
       play,
-      stop,
       state: {paused}
     } = this;
 
     return (
       <View style = {styles.container} >
-        <Video
-          resizeMode  = "cover"
-          source      = {{uri}}
-          style       = {styles.video}
-          repeat      = {true}
-          volume      = {1.0}
-          paused      = {trackPlaying!==uri || paused}
-          onEnd       = {stop}
-          ref         = {component=>this._player=component}
-        />
+        { uri!==undefined && <Video
+            resizeMode  = "cover"
+            source      = {{uri: uri || 'blank'}}
+            style       = {styles.video}
+            repeat      = {true}
+            volume      = {1.0}
+            paused      = { paused }
+
+            onLoadStart={()=>console.log('onLoadStart', arguments)}
+            onLoad={()=>console.log('onLoad', arguments)}
+            onProgress={()=>console.log('onProgress', arguments)}
+            onEnd       = {next}
+            ref         = {component=>this._player=component}
+          />
+        }
         <TouchableOpacity style={styles.play} onPress={play} />
         <Image source = {{uri:picture}} style = {styles.icon} />
         <Text style = {styles.artist} >
@@ -68,7 +65,7 @@ class TrackResults extends Component {
         <Text style = {styles.title} >
           {title}
         </Text>
-        <TouchableOpacity style={styles.add} onPress={addTrack} />
+        <TouchableOpacity style={styles.add} onPress={next} />
       </View>
     );
   }
@@ -107,4 +104,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default TrackResults;
+export default Player;

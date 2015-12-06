@@ -1,48 +1,73 @@
 // npm
-import React, { Component, PropTypes, View, StyleSheet, TextInput, ScrollView } from 'react-native';
+import React, { Component, PropTypes, View, StyleSheet,ScrollView, Text } from 'react-native';
 // Components
-import TrackResult from './TrackResult.js';
+import QueuedTrack from './QueuedTrack.js';
 
-class Search extends Component {
+import Player from './Player.js';
+
+
+class Party extends Component {
 
   constructor () {
     super();
 
     this.state = {
-      duration: undefined,
-      time: undefined,
-      playing: ''
+      queue: [{
+        artist:"horse",
+        title:   "my lovely horse",
+        picture: "http://www.howrse.com/media/equideo/image/chevaux/adulte/americain/normal/300/bai_v1828806360.png",
+        uri:"http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"
+      },{
+        artist:"horse",
+        title:   "my lovely horse",
+        picture: "http://www.howrse.com/media/equideo/image/chevaux/adulte/americain/normal/300/bai_v1828806360.png",
+        uri:"http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"
+      },{
+        artist:"horse",
+        title:   "my lovely horse",
+        picture: "http://www.howrse.com/media/equideo/image/chevaux/adulte/americain/normal/300/bai_v1828806360.png",
+        uri:"http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"
+      },{
+        artist:"horse",
+        title:   "my lovely horse",
+        picture: "http://www.howrse.com/media/equideo/image/chevaux/adulte/americain/normal/300/bai_v1828806360.png",
+        uri:"http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"
+      }]
     }
 
-    this.setDuration = this.setDuration.bind(this);
-    this.setTime     = this.setTime.bind(this);
-    this.play = () => {};
+    this.finishTrack=this.finishTrack.bind(this);
   }
 
-  setDuration (duration) {
-    this.setState({duration})
+  createResults (queue) {
+    return queue.map( (result,i) => <QueuedTrack
+      {...result}
+      key          = {i}
+    />)
   }
 
-  setTime (time) {
-    this.setState({time})
+  finishTrack () {
+    const {queue} = this.state;
+    const length = queue.length;
+    let newQ = [];
+    if (length > 1) {
+      newQ=queue.slice(1)
+    }
+    this.setState({queue:newQ});
   }
 
   render () {
     const {
-      props: {changeState, state},
-      setTime,
-      setDuration,
-      play
+      state: {queue},
+      createResults,
+      finishTrack
     } = this;
 
     return (
       <View style = {styles.container}>
-        <View style= {styles.searchBar}>
-          <TextInput
-            style         = { styles.searchInput }
-            placeholder   = "search by track, artist, keyword"
-            onChangeText  = { (value) => changeState({search:value}) }
-            value         = { state.search }
+        <View style={styles.playing}>
+          <Player
+            next = {finishTrack}
+            {...queue[0]}
           />
         </View>
         <ScrollView
@@ -54,15 +79,7 @@ class Search extends Component {
           scrollEventThrottle              = {16}
           contentContainerStyle            = {styles.scrollContent}
         >
-          <TrackResult
-            artist  = "horse"
-            title   = "my lovely horse"
-            url     = "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"
-            picture = "http://www.howrse.com/media/equideo/image/chevaux/adulte/americain/normal/300/bai_v1828806360.png"
-            play    = {play}
-            setTime = {setTime}
-            onEnd   = {setDuration}
-          />
+          {createResults(queue.slice(1))}
         </ScrollView>
         <View style={styles.bottomBar}>
         </View>
@@ -71,9 +88,13 @@ class Search extends Component {
   }
 }
 
+
+/**
+
+**/
 // onScroll  =   { (event) => this.setState({scrollPosition:event.nativeEvent.contentOffset.y})}
 
-Search.propTypes = {
+Party.propTypes = {
   changePage:  PropTypes.func,
   changeState: PropTypes.func,
   state:       PropTypes.object
@@ -82,11 +103,16 @@ Search.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 30,
     backgroundColor: 'red',
     flexDirection:   'column',
     justifyContent:  'space-between',
   },
-    searchBar: {
+    video: {
+      height:0,
+      width: 0
+    },
+    playing: {
       height: 30,
       backgroundColor: 'blue',
       flexDirection: 'row',
@@ -110,4 +136,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Search;
+export default Party;
