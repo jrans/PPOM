@@ -61,6 +61,9 @@ var Tinderable = React.createClass({
   },
 
   componentWillMount () {
+
+    this.props.actions.getDeck('test');
+
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => true,
       onStartShouldSetPanResponderCapture: this._handleStartShouldSetPanResponder,

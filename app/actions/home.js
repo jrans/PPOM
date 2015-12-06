@@ -60,14 +60,21 @@ export function getDeck (partyName) {
       },
     };
 
-    const partyID = partyName || 'test';
-
-    return fetch(API_URL + '/party?=' + partyID, req)
+    return fetch(API_URL + '/party?name=' + partyName, req)
     .then(response => response.json())
     .then(json => {
       if (json.status === 'success') {
-        dispatch(returnDeck(json.suggestions));
-        dispatch(returnPlaylist(json.playlist));
+
+        const suggestions = json.data.songs.filter(elm => {
+          return elm.type === "suggestion";
+        });
+
+        const playlist = json.data.songs.filter(elm => {
+          return elm.type === "playlist";
+        });
+
+        dispatch(returnDeck(suggestions));
+        dispatch(returnPlaylist(playlist));
       } else {
         // error
         console.log(json);
