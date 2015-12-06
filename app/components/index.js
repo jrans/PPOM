@@ -11,7 +11,7 @@ var {
   height: screenHeight
 } = Dimensions.get('window');
 
-const tabHeight = 100;
+const tabHeight = 85;
 
 class App extends Component {
 
@@ -52,32 +52,32 @@ class App extends Component {
     const {
       changeState,
       changePage,
-      state,
+      state: {topTab, bottomTab, topTabHeight, bottomTabHeight, page},
     } = this;
 
-    switch(state.page) {
+    switch(page) {
       case 'Home':
         return <Home changePage = { changePage } changeState = { changeState } />
       case 'Party':
-      return (
+        return (
             <View style = { styles.container } >
               <DJ/>
                 <Animated.View style = { [{ height: this.state.topTabHeight, top: 0 }, styles.tabContainer ] }>
-                  <Party tabPress={this.toggleHeight.bind(this,'topTab', this.state.topTabHeight)}/>
+                  <Party tabPress={this.toggleHeight.bind(this,'topTab', topTabHeight)} bottomTab={bottomTab}/>
                 </Animated.View>
 
               <Animated.View
-                style = { [{ height: this.state.bottomTabHeight, bottom: 0 }, styles.tabContainer] }
+                style = { [{ height: bottomTabHeight, bottom: 0 }, styles.tabContainer] }
               >
                 <Search/>
                 <TouchableOpacity
-                  onPress = { () => this.toggleHeight('bottomTab', this.state.bottomTabHeight) }
-                  style   = { [styles.tab, {height: this.state.bottomTab ? screenHeight-tabHeight : tabHeight}] }
+                  onPress = { () => this.toggleHeight('bottomTab', bottomTabHeight) }
+                  style   = { [styles.tab, {height: bottomTab ? screenHeight-tabHeight : tabHeight}] }
                 >
                   <Image
                     resizeMode = 'contain'
-                    style      = { [styles.arrow, this.state.bottomTab && { top: 10, left: screenWidth - 40, position: 'absolute' }] }
-                    source     = { this.state.bottomTab ? require('../images/arrow-down.png') : require('../images/up-arrow.png') }
+                    style      = { [styles.arrow, bottomTab && { top: 10, left: screenWidth - 40, position: 'absolute' }] }
+                    source     = { bottomTab ? require('../images/arrow-down.png') : require('../images/up-arrow.png') }
                   />
                 </TouchableOpacity>
               </Animated.View>

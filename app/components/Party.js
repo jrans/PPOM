@@ -4,7 +4,7 @@ import React, { Component, PropTypes, View, StyleSheet,ScrollView, Text, Touchab
 import QueuedTrack from './QueuedTrack.js';
 
 import Player from './Player.js';
-
+import Header from './Header.js';
 
 class Party extends Component {
 
@@ -60,17 +60,19 @@ class Party extends Component {
       state: {queue},
       createResults,
       finishTrack,
-      props: {tabPress}
+      props: {tabPress, bottomTab}
     } = this;
 
     return (
       <View style = {styles.container}>
         <View style={styles.playing}>
-          <Player
-            next = {finishTrack}
-            {...queue[0]}
-          />
-        <TouchableOpacity onPress={tabPress} style={{backgroundColor: 'white', height:20, borderWidth:2}}/>
+          {
+            bottomTab ? <Header/> : <Player
+              next = {finishTrack}
+              {...queue[0]}
+            />
+          }
+          <TouchableOpacity onPress={tabPress} style={{backgroundColor: 'white', height:25}}/>
         </View>
         <ScrollView
           ref                              = {component=>this._funkyScrollView=component}
@@ -83,8 +85,6 @@ class Party extends Component {
         >
           {createResults(queue.slice(1))}
         </ScrollView>
-        <View style={styles.bottomBar}>
-        </View>
       </View>
     );
   }
@@ -105,7 +105,7 @@ Party.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'red',
+    backgroundColor: '#b31217',
     flexDirection:   'column',
     justifyContent:  'space-between',
   },
