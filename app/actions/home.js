@@ -6,6 +6,11 @@ function returnDeck (deck) {
   return { type: types.RETURN_DECK, deck }
 };
 
+function returnPlaylist (playlist) {
+  return { type: types.RETURN_PLAYLIST, playlist }
+};
+
+
 function sliceTopCard () {
   return { type: types.NEXT_CARD };
 };
@@ -42,13 +47,12 @@ export function swipeRight () {
   }
 };
 
-export function getDeck () {
+//
+
+export function getDeck (partyName) {
 
   return (dispatch, getState) => {
 
-    const { store: { sessionToken } } = getState();
-
-    let endpoint = '';
     let req = {
       method: 'GET',
       headers: {
@@ -56,18 +60,14 @@ export function getDeck () {
       },
     };
 
-    if (sessionToken.length === 0) {
-      endpoint = '/opendeck';
-    } else {
-      endpoint = '/deck';
-      req.headers['Authorization'] = sessionToken;
-    }
+    const partyID = partyName || test
 
-    return fetch(API_URL + endpoint, req)
+    return fetch(API_URL + '/party?=' + partyID, req)
     .then(response => response.json())
     .then(json => {
       if (json.status === 'success') {
-        dispatch(returnDeck(json.deck));
+        dispatch(returnDeck(json.suggestions));
+        dispatch(returnPlaylist(json.playlist))
       } else {
         // error
         console.log(json);
@@ -103,12 +103,7 @@ export function confirmBet (price_id, stake) {
 
         if (json.status === 'success') {
           dispatch(nextCard());
-          dispatch(closeProcessingBet());
-          dispatch(closeBetModal());
-          dispatch(syncAppData());
         } else {
-          dispatch(betError(json.message));
-          dispatch(closeProcessingBet());
           dispatch(nextCard());
         }
       })

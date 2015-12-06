@@ -32,7 +32,7 @@ var Card = React.createClass({
           </View>
           <View style={styles.break}/>
           <View style={styles.summary}>
-              <Text style={styles.summaryTitle}>You Tube hits:</Text>
+              <Text style={styles.summaryTitle}>Hits:</Text>
           </View>
         </View>
       </View>
@@ -129,8 +129,8 @@ var styles = StyleSheet.create({
     },
     break: {
       width: 60,
-      borderBottomWidth: 1,
-      borderBottomColor: '#DDD',
+      borderBottomWidth: 2,
+      borderBottomColor: 'red',
       height: 0,
       margin: 10,
     }

@@ -1,4 +1,4 @@
-import { RETURN_DECK, NEXT_CARD } from '../constants/ActionTypes';
+import { RETURN_DECK, RETURN_PLAYLIST, NEXT_CARD } from '../constants/ActionTypes';
 
 const cards = [
   {
@@ -37,15 +37,13 @@ export const initialState = {
   deck:          cards,
   currentCard:   {},
   nextCard:      {},
+  playlist:      [],
 };
 
 export default function home(state = initialState, action) {
 
   switch (action.type) {
     case RETURN_DECK:
-
-      const bigDeck = removeDuplicate(state.deck, action.deck);
-
       return {
         ...state,
         deck:        bigDeck.slice(2),
@@ -59,6 +57,11 @@ export default function home(state = initialState, action) {
         nextCard:    state.deck[0],
         currentCard: state.nextCard,
       };
+    case RETURN_PLAYLIST:
+      return {
+        ...state,
+        playlist:    action.playlist
+      }
     // case RESTART_HOME:
     //   return {
     //     ...initialState

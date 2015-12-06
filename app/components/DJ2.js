@@ -168,7 +168,7 @@ var Tinderable = React.createClass({
         },
         {
           borderColor: this.state.pan.x.interpolate({
-            inputRange: [-320, 0, 320],
+            inputRange: [-10, 0, 10],
             outputRange: ['rgb(255, 0, 0)', 'rgb(221, 221, 221)', 'rgb(255, 0, 0)'],
           })
         }
@@ -193,7 +193,7 @@ var Tinderable = React.createClass({
         },
         {
           borderColor: this.state.pan.x.interpolate({
-            inputRange: [-320, 0, 320],
+            inputRange: [-10, 0, 10],
             outputRange: ['rgb(255, 0, 0)', 'rgb(221, 221, 221)', 'rgb(255, 0, 0)'],
           })
         },
