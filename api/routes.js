@@ -6,6 +6,7 @@ module.exports = (o) => {
   const search    = require('./handlers/search.js')(o.Hum);
   const streamMp3 = require('./handlers/stream.js')(o.Hum);
   const getParty  = require('./handlers/party.js')(o.Knex);
+  const addHit    = require('./handlers/hit.js')(o.Knex);
 
   return [
     {
@@ -43,6 +44,18 @@ module.exports = (o) => {
         },
       },
       handler: getParty,
+    },
+    {
+      method: 'POST',
+      path: '/hit',
+      config: {
+        validate: {
+          payload: {
+            id: Joi.string().required(),
+          },
+        },
+      },
+      handler: addHit,
     }
   ];
 };

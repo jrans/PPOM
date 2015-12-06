@@ -23,7 +23,33 @@ module.exports = env => {
     });
   };
 
+  const addHit = (id,cb) => {
+    knex('song').where('id',id).asCallback((err,res) => {
+
+      if (err) {
+        return cb(err,undefined);
+      }
+
+      if (res.length < 1) {
+        return cb(undefined,[]);
+      }
+
+      const currentHits = res[0].hits;
+
+      knex('song').where('id',id).update('hits',currentHits+1,'*')
+      .asCallback((errUpdate,resUpdate) => {
+
+        if (errUpdate) {
+          return cb(errUpdate,undefined);
+        }
+
+        return cb(undefined,resUpdate);
+      });
+    });
+  }
+
   return {
-    getParty
+    getParty,
+    addHit,
   };
 };
