@@ -69,17 +69,7 @@ class App extends Component {
               <Animated.View
                 style = { [{ height: this.state.bottomTabHeight, bottom: 0 }, styles.tabContainer] }
               >
-                <Search/>
-                <TouchableOpacity
-                  onPress = { () => this.toggleHeight('bottomTab', this.state.bottomTabHeight) }
-                  style   = { [styles.tab, {height: this.state.bottomTab ? screenHeight-tabHeight : tabHeight}] }
-                >
-                  <Image
-                    resizeMode = 'contain'
-                    style      = { [styles.arrow, this.state.bottomTab && { top: 10, left: screenWidth - 40, position: 'absolute' }] }
-                    source     = { this.state.bottomTab ? require('../images/arrow-down.png') : require('../images/up-arrow.png') }
-                  />
-                </TouchableOpacity>
+                <Search tabPress={this.toggleHeight.bind(this,'bottomTab', this.state.bottomTabHeight)}/>
               </Animated.View>
             </View>
          )
