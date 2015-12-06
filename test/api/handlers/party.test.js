@@ -5,7 +5,7 @@ const path = '../../..';
 const test = require('tape');
 const serverFunction = require(path+'/api/server.js');
 
-test('api:handler:search -> should return error if no query', t => {
+test('api:handler:party -> should return error if no param', t => {
 
   const server = serverFunction({
     env: 'test',
@@ -16,7 +16,7 @@ test('api:handler:search -> should return error if no query', t => {
   
   server.inject({
     method: 'GET',
-    url: '/search',
+    url: '/party',
   }, res => {
 
     t.equal(res.statusCode, 400, 'got 400 status code');
@@ -24,7 +24,7 @@ test('api:handler:search -> should return error if no query', t => {
   });
 });
 
-test('api:handler:search -> should return data object', t => {
+test('api:handler:party -> should return party object', t => {
 
   const server = serverFunction({
     env: 'test',
@@ -35,12 +35,11 @@ test('api:handler:search -> should return data object', t => {
 
   server.inject({
     method: 'GET',
-    url: '/search?name=adele',
+    url: '/party?name=test',
   }, res => {
 
     const PAYLOAD = JSON.parse(res.payload);
-    t.equal(PAYLOAD.status, 'success', 'got success status');
-    t.ok(PAYLOAD.data, 'got data');
+    t.equal(res.statusCode, 200, 'got 200 status code');
     t.end();
   });
 });

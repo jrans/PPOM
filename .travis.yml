@@ -1,0 +1,13 @@
+language: node_js
+
+addons:
+  postgresql: "9.4"
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'CREATE DATABASE ppom_dev;'
+
+node_js:
+  - "4.0"
