@@ -64,35 +64,33 @@ class Search extends Component {
     return fetch('http:localhost:9009/search?name='+this.state.searchValue, req)
       .then(response => response.json())
       .then(json => {
-
-        console.log(json);
-
-        console.log( json.data[0].songs.reduce((results, song) => {
-            return results.concat[{
+        const topArtist = json.data[0];
+        console.log(topArtist.songs.map(song => {
+          return {
               party_name:   'test',
               url:          song.url,
               album_image:  song.album_image,
-              artist_image: json.data[0].artist_image,
+              artist_image: topArtist.artist_image,
               title:        song.title,
-              artist:       json.data[0].name
-            }]
-          }, results)
-        }, [])
+              artist:       topArtist.name
+            };
+          }))
 
-        this.setState({searchResults: json.data[0].songs.reduce((results, song) => {
-            return results.concat[{
+        this.setState({searchResults: topArtist.songs.map(song => {
+          return {
               party_name:   'test',
               url:          song.url,
               album_image:  song.album_image,
-              artist_image: json.data[0].artist_image,
+              artist_image: topArtist.artist_image,
               title:        song.title,
-              artist:       json.data[0].name
-            }]
-          }, results)
-        }, [])
+              artist:       topArtist.name
+            };
+          })
+        })
       })
       .catch(error => {
       });
+
   }
 
   createResults () {
@@ -102,16 +100,17 @@ class Search extends Component {
       state : {trackPlaying, searchResults}
     } = this;
 
+    searchResults[0] && console.log('http://localhost:9009/song?youtube='+ searchResults[0].url)
     return searchResults.map( (result,i) => <TrackResult
       picture      = {result.album_image}
       artist       = {result.artist}
       title        = {result.title}
       url          = {'http://localhost:9009/song?youtube='+ result.url}
       trackPlaying = {trackPlaying}
-      changeTrack  = {changeTrack.bind(this,result.url)}
+      changeTrack  = {changeTrack.bind(this,'http://localhost:9009/song?youtube='+result.url)}
       addTrack     = {addTrack.bind(this,{
         party_name: result.party_name,
-        url: result.url,
+        uri: result.url,
         album_image: result.album_image,
         artist_image: result.artist_image,
         title: result.title,

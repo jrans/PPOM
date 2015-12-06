@@ -13,10 +13,10 @@ class Party extends Component {
 
     this.state = {
       queue: [{
-        artist:"horse",
-        title:   "my lovely horse",
+        artist:"Eminem",
+        title:   "One of Eminem's hits about his horse",
         picture: "http://www.howrse.com/media/equideo/image/chevaux/adulte/americain/normal/300/bai_v1828806360.png",
-        uri:"http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"
+        uri:"http://localhost:9009/song?youtube=https://www.youtube.com/watch?v=ab9176Srb5Y"
       },{
         artist:"horse",
         title:   "my lovely horse",
