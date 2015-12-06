@@ -5,6 +5,7 @@ module.exports = (o) => {
 
   const search    = require('./handlers/search.js')(o.Hum);
   const streamMp3 = require('./handlers/stream.js')(o.Hum);
+  const getParty  = require('./handlers/party.js')(o.Mongo);
 
   return [
     {
@@ -21,8 +22,27 @@ module.exports = (o) => {
     },
     {
       method: 'GET',
-      path: '/song/{id}',
+      path: '/song',
+      config: {
+        validate: {
+          query: {
+            youtube: Joi.string().required()
+          },
+        },
+      },
       handler: streamMp3,
+    },
+    {
+      method: 'GET',
+      path: '/party',
+      config: {
+        validate: {
+          query: {
+            name: Joi.string().required(),
+          },
+        },
+      },
+      handler: getParty,
     }
   ];
 };

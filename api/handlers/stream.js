@@ -8,10 +8,9 @@ module.exports = (Hum) => {
 
   return (req, reply) => {
 
-    const requestUrl = 'youtube.com/watch?v=-yL7VP4-kP4';
-
     try {
-      reply(youtubeStream(requestUrl));;
+
+      reply(youtubeStream(req.query.youtube));
     } catch (exception) {
 
       return reply({
