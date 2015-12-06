@@ -112,7 +112,7 @@ class Search extends Component {
       search,
       createResults,
       searchTracks,
-      props: { tabPress, refCreator }
+      props: { tabPress, refCreator, buttomTab }
     } = this;
 
     return (
@@ -124,7 +124,7 @@ class Search extends Component {
             placeholderTextColor = 'black'
             onChangeText  = { search }
             value         = { searchValue }
-            onFocus       = { tabPress }
+            onFocus       = { () => !buttomTab && tabPress() }
             ref           = { refCreator('searchInput')}
           />
           <View  style={{width: 10}}/>

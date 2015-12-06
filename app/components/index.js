@@ -78,7 +78,8 @@ class App extends Component {
               <Animated.View
                 style = { [{ height: bottomTabHeight, bottom: 0 }, styles.tabContainer] }
               >
-                <Search tabPress={this.toggleHeight.bind(this,'bottomTab', bottomTabHeight)} refCreator={refCreator}/>
+                <Search bottomTab={bottomTab} tabPress={this.toggleHeight.bind(this,'bottomTab', bottomTabHeight)} refCreator={refCreator}/>
+
               </Animated.View>
             </View>
          )
