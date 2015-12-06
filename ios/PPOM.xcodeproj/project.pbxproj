@@ -26,6 +26,7 @@
 		317C8CFD1C13F401008A62C7 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 317C8CF81C13F401008A62C7 /* Montserrat-Light.otf */; };
 		317C8CFE1C13F401008A62C7 /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 317C8CF91C13F401008A62C7 /* Montserrat-Regular.otf */; };
 		31E1F3291C134AD50068EC61 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E1F3281C134ACF0068EC61 /* libRCTVideo.a */; };
+		31EB90CB1C1414C300382E21 /* jukebox.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 31EB90CA1C1414C300382E21 /* jukebox.mp4 */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +133,7 @@
 		317C8CF81C13F401008A62C7 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.otf"; path = "PPOM/Fonts/Montserrat-Light.otf"; sourceTree = "<group>"; };
 		317C8CF91C13F401008A62C7 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.otf"; path = "PPOM/Fonts/Montserrat-Regular.otf"; sourceTree = "<group>"; };
 		31E1F3231C134ACE0068EC61 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
+		31EB90CA1C1414C300382E21 /* jukebox.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = jukebox.mp4; path = ../jukebox.mp4; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -281,6 +283,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				31EB90CA1C1414C300382E21 /* jukebox.mp4 */,
 				317C8CF51C13F401008A62C7 /* Montserrat-Black.otf */,
 				317C8CF61C13F401008A62C7 /* Montserrat-Bold.otf */,
 				317C8CF71C13F401008A62C7 /* Montserrat-Hairline.otf */,
@@ -481,6 +484,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31EB90CB1C1414C300382E21 /* jukebox.mp4 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				317C8CFA1C13F401008A62C7 /* Montserrat-Black.otf in Resources */,
 				317C8CFB1C13F401008A62C7 /* Montserrat-Bold.otf in Resources */,

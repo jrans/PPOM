@@ -130,7 +130,7 @@ class Search extends Component {
       search,
       createResults,
       searchTracks,
-      props: { tabPress }
+      props: { tabPress, refCreator, buttomTab }
     } = this;
 
     return (
@@ -142,14 +142,15 @@ class Search extends Component {
             placeholderTextColor = 'black'
             onChangeText  = { search }
             value         = { searchValue }
+            onFocus       = { () => !buttomTab && tabPress() }
+            ref           = { refCreator('searchInput')}
           />
+          <View  style={{width: 10}}/>
           <TouchableOpacity
-            style = {styles.searchBar}
+            style = {styles.iconContainer}
             onPress = {searchTracks}
           >
-            <View style={styles.iconContainer}>
-              <Image source={require('../images/search.png')} style={styles.searchIcon} resizeMode={'contain'}/>
-            </View>
+            <Image source={require('../images/search.png')} style={styles.searchIcon} resizeMode={'contain'}/>
           </TouchableOpacity>
         </TouchableOpacity>
         <ScrollView
@@ -197,8 +198,9 @@ const styles = StyleSheet.create({
       height: 100,
       backgroundColor: 'black',
       flexDirection: 'row',
-      paddingHorizontal: 20,
-      alignItems: 'center'
+      paddingHorizontal: 10,
+      alignItems: 'center',
+      justifyContent: 'space-between'
     },
       searchInput: {
         color: 'black',

@@ -30,6 +30,7 @@ class App extends Component {
     this.changeState  = this.changeState.bind(this);
     this.changePage   = this.changePage.bind(this);
     this.toggleHeight = this.toggleHeight.bind(this);
+    this.refCreator   = this.refCreator.bind(this);
   }
 
   changeState (change) {
@@ -41,6 +42,7 @@ class App extends Component {
   }
 
   toggleHeight(tab, animatedValue){
+    this.state.bottomTab && this.searchInput.blur();
     Animated.timing(animatedValue, {
       toValue:  this.state[tab]? tabHeight : screenHeight - tabHeight,
       duration: 100,
@@ -48,10 +50,17 @@ class App extends Component {
     }).start(() => this.setState({ [tab]: !this.state[tab] }));
   }
 
+  refCreator (name) {
+    return (component) => {
+      this[name] = component
+    }
+  }
+
   render () {
     const {
       changeState,
       changePage,
+      refCreator,
       state: {topTab, bottomTab, topTabHeight, bottomTabHeight, page},
     } = this;
 
@@ -69,7 +78,8 @@ class App extends Component {
               <Animated.View
                 style = { [{ height: bottomTabHeight, bottom: 0 }, styles.tabContainer] }
               >
-                <Search tabPress={this.toggleHeight.bind(this,'bottomTab', bottomTabHeight)}/>
+                <Search bottomTab={bottomTab} tabPress={this.toggleHeight.bind(this,'bottomTab', bottomTabHeight)} refCreator={refCreator}/>
+
               </Animated.View>
             </View>
          )
