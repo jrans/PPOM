@@ -72,7 +72,7 @@ class Party extends Component {
               {...queue[0]}
             />
           }
-          <TouchableOpacity onPress={tabPress} style={{backgroundColor: 'white', height:25}}/>
+          <TouchableOpacity onPress={tabPress} style={{backgroundColor: 'white', height:15}}/>
         </View>
         <ScrollView
           ref                              = {component=>this._funkyScrollView=component}
@@ -114,27 +114,19 @@ const styles = StyleSheet.create({
       width: 0
     },
     playing: {
-      height: 100,
+      height: 90,
       backgroundColor: 'blue',
       flexDirection: 'column',
       alignItems: 'stretch'
     },
-      searchInput: {
-        flex: 1,
-        backgroundColor: 'yellow',
-        paddingHorizontal: 10
+      trackScroll: {
+        height: 90,
+        backgroundColor: 'b31217'
       },
-    trackScroll: {
-      height: 100,
-      backgroundColor: 'orange'
-    },
-      scrollContent: {
-        flexDirection: 'column',
-        alignItems:    'stretch'
-      },
-    bottomBar: {
-      height:60
-    }
+        scrollContent: {
+          flexDirection: 'column',
+          alignItems:    'stretch'
+        },
 })
 
 export default Party;

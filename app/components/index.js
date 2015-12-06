@@ -11,7 +11,7 @@ var {
   height: screenHeight
 } = Dimensions.get('window');
 
-const tabHeight = 85;
+const tabHeight = 90;
 
 class App extends Component {
 
