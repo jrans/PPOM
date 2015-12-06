@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
+import { API_URL } from '../config.js';
 import * as types from '../constants/ActionTypes.js';
 
 function returnDeck (deck) {
@@ -59,14 +60,14 @@ export function getDeck (partyName) {
       },
     };
 
-    const partyID = partyName || 'test'
+    const partyID = partyName || 'test';
 
     return fetch(API_URL + '/party?=' + partyID, req)
     .then(response => response.json())
     .then(json => {
       if (json.status === 'success') {
         dispatch(returnDeck(json.suggestions));
-        dispatch(returnPlaylist(json.playlist))
+        dispatch(returnPlaylist(json.playlist));
       } else {
         // error
         console.log(json);

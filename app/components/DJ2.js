@@ -7,7 +7,6 @@
 
 import React, { StyleSheet, Animated, View, PanResponder, PropTypes, Dimensions, Image } from 'react-native';
 
-import QuickSwipe from './quick_swipe.js';
 import CD from './cd.js';
 import Blank from './blank-cd.js';
 

@@ -35,6 +35,7 @@ HomeContainer.propTypes = {
 };
 
 function mapStateToProps(state) {
+
   const deck = state.home.deck;
   const currentCard = state.home.currentCard;
   const nextCard    = state.home.nextCard;
